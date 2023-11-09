@@ -9,7 +9,7 @@ export default function App() {
         alignItems: "center",
       }}
     >
-      <Text style={{ fontSize: 30 }}>Hello World!!</Text>
+      <Text style={{ fontSize: 30 }}>Hello World</Text>
     </View>
   );
 }
