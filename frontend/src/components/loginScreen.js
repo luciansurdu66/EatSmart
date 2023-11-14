@@ -3,6 +3,7 @@ import { View, TextInput, Button, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AddIngredient from "./addIngredient";
 import styles from "../styles/login.style";
+import SignUpScreen from "./signupScreen";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -16,6 +17,10 @@ const LoginScreen = () => {
     // Navighează către ecranul "FirstPage" după autentificare
     navigation.navigate("AddIngredient");
   };
+
+  const handleSignUp = () => {
+    navigation.navigate("SignUpScreen");
+  }
   return (
 
       <View style={styles.view}>
@@ -42,7 +47,7 @@ const LoginScreen = () => {
            onPress={handleLogin} style={styles.button}/>
         <View style={styles.container}>
             <Text>Don't have an account?</Text>
-            <Button title="SignUp" color='#DA6A00' />
+        <Text style={styles.button} onPress={handleSignUp}>Sign up</Text>
         </View>
         
       </View>
