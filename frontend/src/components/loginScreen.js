@@ -36,19 +36,13 @@ const LoginScreen = () => {
           style={styles.textInput}
         />
 
-        <Button title="Forgot password?"></Button>
-    	<Button title="Login"
-           onPress={handleLogin}
-           style={{    alignItems: 'center',
-           justifyContent: 'center',
-           paddingVertical: 12,
-           paddingHorizontal: 32,
-           borderRadius: 4,
-           elevation: 3,
-           backgroundColor: 'black',}} />
+       
+        <Text style={styles.button} onPress={handleLogin}>Forgot Password </Text> 
+    	  <Text title="Login"
+           onPress={handleLogin} style={styles.button}/>
         <View style={styles.container}>
             <Text>Don't have an account?</Text>
-            <Button title="SignUp"></Button>
+            <Button title="SignUp" color='#DA6A00' />
         </View>
         
       </View>
