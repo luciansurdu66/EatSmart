@@ -1,6 +1,9 @@
+// create a new ingredient
 import React, { Component } from "react";
 import axios from "axios";
 import { View, Text, Button, TextInput, StyleSheet } from "react-native";
+// import styles from "../styles/addIngredient.style.js";
+// import BottomMenu from "./bottomMenu";
 
 export default class AddIngredient extends Component {
     constructor(props) {
