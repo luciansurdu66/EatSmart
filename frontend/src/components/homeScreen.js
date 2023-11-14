@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AddIngredient from './addIngredient';
-import BottomMenu from './bottomMenu';
+//import BottomMenu from './bottomMenu';
 import styles from '../styles/homeScreen.style';
 
 const HomeScreen = ({ navigation }) => {
