@@ -4,6 +4,30 @@ const styles = StyleSheet.create({
   recipeSearchView: {
     textAlign: 'center',
     margin: 20,
+    overflowY: 'auto', // Add overflow property for vertical scrolling
+    height: '80vh', // Set a fixed height or use a percentage of the viewport height
+  },
+
+  recipeList: {
+    display: 'flex',
+    flexWrap: 'wrap', // Allow recipes to wrap to the next line
+    justifyContent: 'center',
+    alignItems: 'flex-start', // Align items at the top of the container
+    gap: '20px', // Add some space between recipes
+  },
+  recipeItem: {
+    border: '1px solid #ddd',
+    margin: '10px',
+    padding: '10px',
+    borderRadius: '5px',
+    textAlign: 'center',
+    width: '200px', // Set a fixed width for each recipe item
+  },
+  recipeImage: {
+    width: '30%',
+    height: '120px', // Adjust the height of the image
+    objectFit: 'cover',
+    borderRadius: '5px 5px 0 0',
   },
   recipeSearchText: {
     fontSize: 40,
@@ -69,6 +93,15 @@ const styles = StyleSheet.create({
     gap: '20px',
     margin: '20px 0',
   },
+
+  recipeSearchView: {
+    textAlign: 'center',
+    margin: 20,
+  },
+  recipeList: {
+    overflowY: 'auto', // Add overflow property for vertical scrolling
+    height: '300px', // Set a fixed height or use a percentage of the viewport height
+  }
 });
 
 export default styles;
