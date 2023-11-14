@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import AddIngredient from "./frontend/src/components/addIngredient"; // updated import path
 import HomeScreen from "./frontend/src/components/homeScreen";
+import MyFridge from "./frontend/src/components/myFridge";
 //import BottomMenu from "./frontend/src/components/bottomMenu";
 
 //create a stack navigator with bottom menu sticking to the bottom
@@ -17,6 +18,7 @@ export default function App() {
         
         <Stack.Screen name="HomeScreen" component={HomeScreen} title='Home' />
         <Stack.Screen name="AddIngredient" component={AddIngredient} />
+        <Stack.Screen name="MyFridge" component={MyFridge} />
       </Stack.Navigator> 
     </NavigationContainer>
   );
