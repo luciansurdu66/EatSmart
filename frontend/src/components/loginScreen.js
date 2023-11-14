@@ -36,6 +36,7 @@ const LoginScreen = () => {
           style={styles.textInput}
         />
 
+       
         <Text style={styles.button} onPress={handleLogin}>Forgot Password </Text> 
     	  <Text title="Login"
            onPress={handleLogin} style={styles.button}/>

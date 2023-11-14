@@ -39,6 +39,19 @@ const styles = StyleSheet.create({
            
        }
       },
+    containerCircle: {
+        position: 'relative'
+    },
+    CircleShape1: {
+        width: 150,
+        height: 150,
+        borderRadius: 150 / 2,
+        backgroundColor: '#68904D',
+        //position: absolute,
+        top: -500,
+        right: 100,
+        zindex: 20,
+    },
     button: {
         alignItems: 'center',
         padding: 10,
@@ -53,5 +66,3 @@ const styles = StyleSheet.create({
 export default styles;
 
 
-//{
-//flex: 1, flexDirection: 'column', alignItems: 'flex-start', paddingLeft: 20, paddingTop: 100 
