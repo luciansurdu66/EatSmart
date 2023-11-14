@@ -39,7 +39,14 @@ const styles = StyleSheet.create({
            
        }
       },
-
+    button: {
+        alignItems: 'center',
+        padding: 10,
+        margin: 10,
+        borderRadius: 10,
+        alignSelf: 'center',    
+        color: '#DA6A00',
+},
 
 });
 
