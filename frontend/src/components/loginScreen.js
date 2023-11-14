@@ -19,6 +19,11 @@ const LoginScreen = () => {
   const handleSignUp = () => {
     navigation.navigate("SignUpScreen");
   }
+
+  const handleSearch = () => {
+    navigation.navigate("RecipeSearchScreen");
+  }
+
   return (
 
       <View style={styles.view}>
@@ -46,6 +51,7 @@ const LoginScreen = () => {
         <View style={styles.container}>
             <Text>Don't have an account?</Text>
         <Text style={styles.button} onPress={handleSignUp}>Sign up</Text>
+        <Text style={styles.button} onPress={handleSearch}>Search...</Text>
         </View>
         
       </View>
