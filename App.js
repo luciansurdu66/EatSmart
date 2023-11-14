@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import AddIngredient from "./frontend/src/components/addIngredient"; // updated import path
 import HomeScreen from "./frontend/src/components/homeScreen";
 import LoginScreen from "./frontend/src/components/loginScreen";
+import SignUpScreen from "./frontend/src/components/signupScreen";
 // import BottomMenu from "./frontend/src/components/bottomMenu";
 
 //create a stack navigator with bottom menu sticking to the bottom
@@ -16,6 +17,7 @@ export default function App() {
       {/* <BottomMenu/> */}
       <Stack.Navigator>
       <Stack.Screen name="HomeScreen" component={HomeScreen} title='Home' />
+        <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={{ headerShown: false }} />
         <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
         <Stack.Screen name="AddIngredient" component={AddIngredient} />
       </Stack.Navigator>

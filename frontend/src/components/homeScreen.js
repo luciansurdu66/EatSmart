@@ -6,6 +6,7 @@ import AddIngredient from './addIngredient';
 // import BottomMenu from './bottomMenu';
 import styles from '../styles/homeScreen.style';
 import LoginScreen from './loginScreen';
+import SignUpScreen from './signupScreen';
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -15,7 +16,7 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.title}>Eat Smart</Text>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate(LoginScreen)}
+            onPress={() => navigation.navigate(SignUpScreen)}
           >
             <Text style={styles.buttonText}>Get Started</Text>
             </TouchableOpacity>

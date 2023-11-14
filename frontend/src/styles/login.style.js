@@ -33,10 +33,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
        justifyContent: 'center',
       },
+    containerCircle: {
+        position: 'relative'
+    },
+    CircleShape1: {
+        width: 150,
+        height: 150,
+        borderRadius: 150 / 2,
+        backgroundColor: '#68904D',
+        //position: absolute,
+        top: -500,
+        right: 100,
+        zindex: 20,
+    },
 });
 
 export default styles;
 
 
-//{
-//flex: 1, flexDirection: 'column', alignItems: 'flex-start', paddingLeft: 20, paddingTop: 100 

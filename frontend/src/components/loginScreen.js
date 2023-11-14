@@ -39,7 +39,13 @@ const LoginScreen = () => {
         <Button title="Forgot password?"></Button>
     	<Button title="Login"
            onPress={handleLogin}
-           style={styles.title} />
+           style={{    alignItems: 'center',
+           justifyContent: 'center',
+           paddingVertical: 12,
+           paddingHorizontal: 32,
+           borderRadius: 4,
+           elevation: 3,
+           backgroundColor: 'black',}} />
         <View style={styles.container}>
             <Text>Don't have an account?</Text>
             <Button title="SignUp"></Button>
