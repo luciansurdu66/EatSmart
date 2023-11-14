@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, TextInput, Button, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AddIngredient from "./addIngredient";
+import styles from "../styles/login.style";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -17,24 +18,33 @@ const LoginScreen = () => {
   };
   return (
 
-      <View style={{flex: 1, flexDirection: 'column', alignItems: 'flex-start', paddingLeft: 20, paddingTop: 100 }}>
-        <Text style={{ fontSize: 40 }}>Login</Text>
-        <Text style={{fontSize: 20, color: '#9796A1', paddingTop: 30}}>E-mail</Text>
+      <View style={styles.view}>
+        <Text style={styles.loginText}>Login</Text>
+        <Text style={styles.text}>E-mail</Text>
         <TextInput
           placeholder="Your email"
           value={email}
           onChangeText={(text) => setEmail(text)}
-          style={{ height: 40, borderColor: "gray", borderWidth: 1, marginBottom: 10, width: '90%', borderRadius: 10, textAlign: 'center' }}
+          style={styles.textInput}
         />
-        <Text style={{fontSize: 20, color: '#9796A1', paddingTop: 30}}>Password</Text>
+        <Text style={styles.text}>Password</Text>
         <TextInput
           placeholder="Password"
           value={password}
           onChangeText={(text) => setPassword(text)}
           secureTextEntry
-          style={{ height: 40, borderColor: "gray", borderWidth: 1, marginBottom: 10, width: '90%', borderRadius: 10, textAlign: 'center'}}
+          style={styles.textInput}
         />
-    	  <Button title="Login" onPress={handleLogin} />
+
+        <Button title="Forgot password?"></Button>
+    	<Button title="Login"
+           onPress={handleLogin}
+           style={styles.title} />
+        <View style={styles.container}>
+            <Text>Don't have an account?</Text>
+            <Button title="SignUp"></Button>
+        </View>
+        
       </View>
       
   )
