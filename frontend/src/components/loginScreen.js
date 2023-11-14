@@ -36,13 +36,13 @@ const LoginScreen = () => {
           style={styles.textInput}
         />
 
-        <Button title="Forgot password?"></Button>
+        <Button title="Forgot password?" color='#DA6A00'/>
     	<Button title="Login"
            onPress={handleLogin}
-           style={styles.title} />
+         />
         <View style={styles.container}>
             <Text>Don't have an account?</Text>
-            <Button title="SignUp"></Button>
+            <Button title="SignUp" color='#DA6A00' />
         </View>
         
       </View>

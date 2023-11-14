@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
     title: {
         display: 'flex',
         position: 'absolute',
-        left: '50%'
+        left: '50%',
     },
     text: {
         fontSize: 20, 
@@ -32,7 +32,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
        justifyContent: 'center',
+       buttonLogin:
+       {
+           borderWidth: 1,
+           borderRadius: 10
+           
+       }
       },
+
+
 });
 
 export default styles;
