@@ -1,9 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import AddIngredient from './addIngredient';
-// import BottomMenu from './bottomMenu';
+import { View, Text, TouchableOpacity } from 'react-native';
 import styles from '../styles/homeScreen.style';
 import LoginScreen from './loginScreen';
 
