@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styles from '../styles/homeScreen.style';
 import LoginScreen from './loginScreen';
-import SignUpScreen from './signupScreen';
 
 const HomeScreen = ({ navigation }) => {
   return (
