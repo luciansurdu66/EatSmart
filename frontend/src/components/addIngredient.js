@@ -1,155 +1,159 @@
-// create a new ingredient
 import React, { Component } from "react";
 import axios from "axios";
-import { View, Text, Button, TextInput, StyleSheet } from "react-native";
-// import styles from "../styles/addIngredient.style.js";
+import { View, Text, Button, TextInput, StyleSheet, ActivityIndicator } from "react-native";
 
 export default class AddIngredient extends Component {
     constructor(props) {
         super(props);
 
-        this.onChangeIngredientName = this.onChangeIngredientName.bind(this);
-        this.onChangeIngredientQuantity = this.onChangeIngredientQuantity.bind(this);
-        this.onChangeIngredientUnit = this.onChangeIngredientUnit.bind(this);
-        this.onChangeIngredientDescription = this.onChangeIngredientDescription.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-
         this.state = {
-            ingredient_name: "",
-            ingredient_quantity: "",
-            ingredient_unit: "",
-            ingredient_description: "",
+            ingredientName: "",
+            ingredientQuantity: "",
+            ingredientUnit: "",
+            ingredientDescription: "",
+            loading: false,
+            error: null,
         };
     }
 
-    onChangeIngredientName(e) {
+    onChangeIngredientName(text) {
         this.setState({
-            ingredient_name: e.target.value,
+            ingredientName: text,
         });
     }
 
-    onChangeIngredientQuantity(e) {
+    onChangeIngredientQuantity(text) {
         this.setState({
-            ingredient_quantity: e.target.value,
+            ingredientQuantity: text,
         });
     }
 
-    onChangeIngredientUnit(e) {
+    onChangeIngredientUnit(text) {
         this.setState({
-            ingredient_unit: e.target.value,
+            ingredientUnit: text,
         });
     }
 
-    onChangeIngredientDescription(e) {
+    onChangeIngredientDescription(text) {
         this.setState({
-            ingredient_description: e.target.value,
+            ingredientDescription: text,
         });
     }
 
-    onSubmit(e) {
-        e.preventDefault();
+    onSubmit() {
+        this.setState({ loading: true, error: null });
 
         const newIngredient = {
-            ingredient_name: this.state.ingredient_name,
-            ingredient_quantity: this.state.ingredient_quantity,
-            ingredient_unit: this.state.ingredient_unit,
-            ingredient_description: this.state.ingredient_description,
+            ingredientName: this.state.ingredientName,
+            ingredientQuantity: this.state.ingredientQuantity,
+            ingredientUnit: this.state.ingredientUnit,
+            ingredientDescription: this.state.ingredientDescription,
         };
 
         axios
             .post("http://localhost:5000/ingredients/add", newIngredient)
-            .then((res) => console.log(res.data));
+            .then((res) => {
+                console.log(res.data);
+                // Additional handling for success, if needed.
+            })
+            .catch((error) => {
+                console.error("Error adding ingredient:", error);
+                this.setState({ error: "Error adding ingredient." });
+            })
+            .finally(() => {
+                this.setState({ loading: false });
+            });
 
         this.setState({
-            ingredient_name: "",
-            ingredient_quantity: "",
-            ingredient_unit: "",
-            ingredient_description: "",
+            ingredientName: "",
+            ingredientQuantity: "",
+            ingredientUnit: "",
+            ingredientDescription: "",
         });
     }
 
     render() {
         return (
-            <View style={styles.container}>
+            <View style={styles.wrapper}>
                 <Text style={styles.header}>Add New Ingredient</Text>
                 <TextInput
                     style={styles.textInput}
                     placeholder="Ingredient Name"
-                    value={this.state.ingredient_name}
-                    onChange={this.onChangeIngredientName}
+                    value={this.state.ingredientName}
+                    onChangeText={(text) => this.onChangeIngredientName(text)}
                 />
                 <TextInput
                     style={styles.textInput}
                     placeholder="Ingredient Quantity"
-                    value={this.state.ingredient_quantity}
-                    onChange={this.onChangeIngredientQuantity}
+                    value={this.state.ingredientQuantity}
+                    onChangeText={(text) => this.onChangeIngredientQuantity(text)}
                 />
                 <TextInput
                     style={styles.textInput}
                     placeholder="Ingredient Unit"
-                    value={this.state.ingredient_unit}
-                    onChange={this.onChangeIngredientUnit}
+                    value={this.state.ingredientUnit}
+                    onChangeText={(text) => this.onChangeIngredientUnit(text)}
                 />
                 <TextInput
                     style={styles.textInput}
                     placeholder="Ingredient Description"
-                    value={this.state.ingredient_description}
-                    onChange={this.onChangeIngredientDescription}
+                    value={this.state.ingredientDescription}
+                    onChangeText={(text) => this.onChangeIngredientDescription(text)}
                 />
-                <Button
-                    title="Add Ingredient"
-                    onPress={this.onSubmit}
-                    style={styles.button}
-                />
+                {this.state.loading ? (
+                    <ActivityIndicator style={styles.loader} size="large" color="blue" />
+                ) : (
+                    <Button
+                        title="Add Ingredient"
+                        onPress={() => this.onSubmit()}
+                        color="green"
+                        style={styles.button}
+                    />
+                )}
+                {this.state.error && <Text style={styles.errorText}>{this.state.error}</Text>}
+                <View style={styles.spacing}></View>
+                {}
             </View>
         );
     }
 }
 
-
-
 const styles = StyleSheet.create({
-    container: {
+    wrapper: {
         flex: 1,
-        backgroundColor: '#fff',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: '#fff',
+        paddingHorizontal: 20,
         paddingTop: 40,
-        paddingHorizontal: 20
     },
-    titleText: {
-        fontSize: 10,
+    header: {
+        fontSize: 24,
         fontWeight: 'bold',
+        marginBottom: 20,
         color: 'black',
-        textAlign: 'center',
-        marginBottom: 20
     },
-    input: {
+    textInput: {
         borderWidth: 1,
         borderColor: '#777',
         padding: 8,
         margin: 10,
-        width: 200
+        width: 300,
     },
     button: {
-        alignItems: 'center',
-        backgroundColor: 'black',
         padding: 10,
-        margin: 10,
-        width: 300
+        margin: 0, 
+        width: 300,
+        backgroundColor: 'green',
     },
-    buttonText: {
-        fontSize: 50,
-        fontWeight: 'bold',
-        color: 'black',
-        textAlign: 'center',
-        marginBottom: 20
+    spacing: {
+        height: 40, 
     },
-    text: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: 'black',
-        textAlign: 'center',
-        marginBottom: 20
-    }
-    });
+    loader: {
+        margin: 20,
+    },
+    errorText: {
+        color: 'orange',
+        marginTop: 10,
+    },
+});
