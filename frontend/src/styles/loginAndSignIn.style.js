@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
         height: 150,
         borderRadius: 150 / 2,
         backgroundColor: '#68904D',
-        //position: absolute,
         top: -500,
         right: 100,
         zindex: 20,
