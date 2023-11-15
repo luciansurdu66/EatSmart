@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../styles/recipesearchScreen.style';
+import { View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
 
 const RecipeSearchScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -28,28 +29,29 @@ const RecipeSearchScreen = () => {
   };
 
   return (
-    <div style={styles.recipeSearchView}>
-      <h1 style={styles.recipeSearchText}>Breakfast Recipes</h1>
-      <label style={styles.text}>Search for breakfast recipes:</label>
-      <input
+    <View style={styles.recipeSearchView}>
+      <Text style={styles.recipeSearchText}>Breakfast Recipes</Text>
+      <Text style={styles.text}>Search for breakfast recipes:</Text>
+      <TextInput
         type="text"
         placeholder="Enter ingredients or dish name"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         style={styles.textInput}
       />
-      <button onClick={searchRecipes} style={styles.button}>Search</button>
-
-      <div style={styles.recipeList}>
+      <TouchableOpacity>
+      <Text onClick={searchRecipes} style={styles.button}>Search</Text>
+      </TouchableOpacity>
+      <View style={styles.recipeList}>
         {searchResults.map(recipe => (
-          <div key={recipe.id} style={styles.recipeItem}>
-            <img src={recipe.image} alt={recipe.name} style={styles.recipeImage} />
-            <h3>{recipe.name}</h3>
-            <p>Ingredients: {recipe.ingredients}</p>
-          </div>
+          <View key={recipe.id} style={styles.recipeItem}>
+            <Image src={recipe.image} alt={recipe.name} style={styles.recipeImage} />
+            <Text>{recipe.name}</Text>
+            <Text>Ingredients: {recipe.ingredients}</Text>
+          </View>
         ))}
-      </div>
-    </div>
+      </View>
+    </View>
   );
 };
 
