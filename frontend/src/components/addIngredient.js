@@ -104,8 +104,6 @@ export default class AddIngredient extends Component {
     }
 }
 
-
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
