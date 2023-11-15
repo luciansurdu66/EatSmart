@@ -21,6 +21,9 @@ const LoginScreen = () => {
     navigation.navigate("SignUpScreen");
   }
 
+  const handleSearch = () => {
+    navigation.navigate("RecipeSearchScreen");
+  }
 
   return (
 
@@ -64,13 +67,14 @@ const LoginScreen = () => {
           </TouchableOpacity>
 
         <View style={styles.container}>
+            <Text>Don't have an account?</Text>
+        <Text style={styles.button} onPress={handleSignUp}>Sign up</Text>
+        <Text style={styles.button} onPress={handleSearch}>Search...</Text>
             <Text style={{fontSize: 20, fontFamily: 'serif'}}>Don't have an account?</Text>
             <TouchableOpacity onPress={handleSignUp}>
               <Text style={styles.button}>Sign up</Text>
             </TouchableOpacity>
-            
         </View>
-        
       </View>
       
   )
