@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions, ScrollView, Text } from 'react-native';
+import AddIngredient from './addIngredient';
 
 const SquareComponent = () => {
   return <View style={styles.square} />;
@@ -19,7 +20,7 @@ const GridComponent = () => {
     { id: 19, name: 'Item 19', quantity: 1, expirationDate: '2024-01-01' },
     { id: 20, name: 'Item 20', quantity: 4, expirationDate: '2023-12-10' },
   ]; */
-
+  
   const generateItems = () => {
     const items = [];
     for (let i = 1; i <= 20; i++) {
