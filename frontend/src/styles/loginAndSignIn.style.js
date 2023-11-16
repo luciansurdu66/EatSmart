@@ -7,37 +7,33 @@ const styles = StyleSheet.create({
         left: '50%',
     },
     text: {
-        fontSize: 20, 
+        fontSize: 25, 
         color: '#9796A1', 
-        paddingTop: 30
+        paddingTop: 30,
+        paddingLeft: 30,
+        fontFamily: 'serif'
     },
     textInput:
     {
-     height: 40, 
+     height: 65, 
      borderColor: "gray", 
      borderWidth: 1, 
      marginBottom: 10, 
      width: '90%',
      borderRadius: 100, 
-     textAlign: 'center' 
+     textAlign: 'center',
+     alignSelf: 'center',
+     fontFamily: 'serif',
+     fontSize: 15
     },
     loginText:
     {
-        fontSize: 40, paddingTop: 100 },
-    view:
-    {
-        marginLeft: 29
-    },
+        fontSize: 50, paddingTop: 100, paddingLeft: 30, fontFamily: 'serif' },
+
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-       justifyContent: 'center',
-       buttonLogin:
-       {
-           borderWidth: 1,
-           borderRadius: 10
-           
-       }
+        justifyContent: 'center',
       },
     containerCircle: {
         position: 'relative'
@@ -58,8 +54,29 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignSelf: 'center',    
         color: '#DA6A00',
-},
+        fontSize: 20,
+        textShadowColor: 'transparent',
+        fontFamily: 'serif'
 
+
+    },
+    container1: {
+        backgroundColor: '#DA6A00',
+        borderRadius: 50,
+        padding: 10,
+        width: '50%',
+        alignSelf: 'center',
+        alignItems: 'center',  // Centrare orizontală
+        loginBut: {
+            margin: 10,
+            alignSelf: 'center',
+            textAlign: 'center',
+            color: 'white',
+            fontSize: 25,
+            fontFamily: 'serif'
+        },
+    },
+    
 });
 
 export default styles;
