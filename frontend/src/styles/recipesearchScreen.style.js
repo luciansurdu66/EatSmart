@@ -3,9 +3,8 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   recipeSearchView: {
     textAlign: 'center',
-    margin: 20,
-    overflowY: 'auto', // Add overflow property for vertical scrolling
-    height: '80vh', // Set a fixed height or use a percentage of the viewport height
+    margin: 0,
+    overflowY: 'auto', 
   },
 
   recipeList: {
@@ -13,18 +12,18 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap', // Allow recipes to wrap to the next line
     justifyContent: 'center',
     alignItems: 'flex-start', // Align items at the top of the container
-    gap: '20px', // Add some space between recipes
+    gap: '0px', // Add some space between recipes
   },
   recipeItem: {
     border: '1px solid #ddd',
     margin: '10px',
     padding: '10px',
-    borderRadius: '5px',
+    borderRadius: '0px',
     textAlign: 'center',
     width: '200px', // Set a fixed width for each recipe item
   },
   recipeImage: {
-    width: '30%',
+    width: '100%',
     height: '120px', // Adjust the height of the image
     objectFit: 'cover',
     borderRadius: '5px 5px 0 0',
@@ -99,8 +98,8 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   recipeList: {
-    overflowY: 'auto', // Add overflow property for vertical scrolling
-    height: '300px', // Set a fixed height or use a percentage of the viewport height
+    overflowY: 'scroll', // Add overflow property for vertical scrolling
+    height: '80%', // Set a fixed height or use a percentage of the viewport height
   }
 });
 
