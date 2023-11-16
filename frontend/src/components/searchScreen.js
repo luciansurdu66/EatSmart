@@ -6,7 +6,6 @@ const RecipeSearchScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
-  // Sample breakfast recipes with images
   const sampleBreakfastRecipes = [
     { id: 1, name: 'Scrambled Eggs', image: 'https://retete.unica.ro/wp-content/uploads/2021/02/omleta_sufleu.jpg', ingredients: 'Eggs, Salt, Pepper' },
     { id: 2, name: 'Pancakes', image: 'https://www.lauralaurentiu.ro/wp-content/uploads/2013/03/clatite-simple-reteta-laura-laurentiu-reteta-de-clatite-simple-reteta-simpla-clatite-reteta-aluat-de-clatite.jpg', ingredients: 'Flour, Milk, Eggs, Baking Powder' },
@@ -20,12 +19,15 @@ const RecipeSearchScreen = () => {
     { id: 10, name: 'Papanas', image: 'hhttps://depozitulderetete.ro/wp-content/uploads/2015/06/reteta-de-papanasi-08.jpg', ingredients: 'Flour, Milk, Eggs, Baking Powder' },
     { id: 11, name: 'Gulas', image: 'https://cumsa.ro/wp-content/uploads/2020/08/cum-sa-faci-gulas-unguresc-cu-carne-de-porc-cea-mai-buna-reteta.jpg', ingredients: 'Flour, Milk, Eggs, Baking Powder' },
     { id: 12, name: 'Paella', image: 'https://bucate-aromate.ro/wp-content/uploads/2023/07/Reteta-Paella-cu-fructe-de-mare-10.jpg', ingredients: 'Flour, Milk, Eggs, Baking Powder' },
-    
   ];
 
   const searchRecipes = () => {
-    
-    setSearchResults(sampleBreakfastRecipes);
+    const filteredRecipes = sampleBreakfastRecipes.filter(recipe =>
+      recipe.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      recipe.ingredients.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    setSearchResults(filteredRecipes);
   };
 
   return (
