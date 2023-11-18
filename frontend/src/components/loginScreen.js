@@ -5,6 +5,7 @@ import AddIngredient from "./addIngredient";
 import styles from "../styles/loginAndSignIn.style";
 import SignUpScreen from "./signupScreen";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import MyFridge from "./myFridge";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -14,7 +15,7 @@ const LoginScreen = () => {
 
   const handleLogin = () => {
     console.log("Autentificare: ", email, password);
-    navigation.navigate("AddIngredient");
+    navigation.navigate("MyFridge");
   };
   const handleResetPassword = () => {
     navigation.navigate("ResetPasswordScreen");
@@ -24,6 +25,9 @@ const LoginScreen = () => {
     navigation.navigate("SignUpScreen");
   }
 
+  const handleSearch = () => {
+    navigation.navigate("RecipeSearchScreen");
+  }
 
   return (
 
@@ -67,13 +71,11 @@ const LoginScreen = () => {
           </TouchableOpacity>
 
         <View style={styles.container}>
+        <Text style={styles.button} onPress={handleSignUp}>Sign up</Text>
             <Text style={{fontSize: 20, fontFamily: 'serif'}}>Don't have an account?</Text>
             <TouchableOpacity onPress={handleSignUp}>
-              <Text style={styles.button}>Sign up</Text>
             </TouchableOpacity>
-            
         </View>
-        
       </View>
       
   )
