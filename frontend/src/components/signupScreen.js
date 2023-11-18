@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, TextInput, Button, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import LoginScreen from "./loginScreen";
-import styles from "../styles/login.style";
+import styles from "../styles/loginAndSignIn.style";
 
 
 const SignUpScreen = () =>{

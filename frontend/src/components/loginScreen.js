@@ -17,6 +17,9 @@ const LoginScreen = () => {
     console.log("Autentificare: ", email, password);
     navigation.navigate("MyFridge");
   };
+  const handleResetPassword = () => {
+    navigation.navigate("ResetPasswordScreen");
+  }
 
   const handleSignUp = () => {
     navigation.navigate("SignUpScreen");
@@ -59,7 +62,7 @@ const LoginScreen = () => {
           </TouchableOpacity>
         </View>
 
-       <TouchableOpacity onPress={handleLogin}>
+       <TouchableOpacity onPress={handleResetPassword}>
           <Text style={styles.button} >Forgot Password </Text> 
        </TouchableOpacity>
         
