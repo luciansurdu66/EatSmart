@@ -1,40 +1,81 @@
 import React, { useState } from "react";
-import { View, TextInput, Button, Text } from "react-native";
+import { View, TextInput, Text, Touchable, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AddIngredient from "./addIngredient";
+import styles from "../styles/loginAndSignIn.style";
+import SignUpScreen from "./signupScreen";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import MyFridge from "./myFridge";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [isPasswordVisible, setIsPasswordVisible] = useState(true);
   const navigation = useNavigation();
 
   const handleLogin = () => {
-    // Implementează logica de autentificare aici
     console.log("Autentificare: ", email, password);
-    // Navighează către ecranul "FirstPage" după autentificare
-    navigation.navigate("AddIngredient");
+    navigation.navigate("MyFridge");
   };
+  const handleResetPassword = () => {
+    navigation.navigate("ResetPasswordScreen");
+  }
+
+  const handleSignUp = () => {
+    navigation.navigate("SignUpScreen");
+  }
+
+  const handleSearch = () => {
+    navigation.navigate("RecipeSearchScreen");
+  }
+
   return (
 
-      <View style={{flex: 1, flexDirection: 'column', alignItems: 'flex-start', paddingLeft: 20, paddingTop: 100 }}>
-        <Text style={{ fontSize: 40 }}>Login</Text>
-        <Text style={{fontSize: 20, color: '#9796A1', paddingTop: 30}}>E-mail</Text>
+      <View>
+        <Text style={styles.loginText}>Login</Text>
+        <Text style={styles.text}>E-mail</Text>
         <TextInput
           placeholder="Your email"
           value={email}
           onChangeText={(text) => setEmail(text)}
-          style={{ height: 40, borderColor: "gray", borderWidth: 1, marginBottom: 10, width: '90%', borderRadius: 10, textAlign: 'center' }}
+          secureTextEntry
+          style={styles.textInput}
         />
-        <Text style={{fontSize: 20, color: '#9796A1', paddingTop: 30}}>Password</Text>
-        <TextInput
-          placeholder="Password"
+        <Text style={styles.text}>Password</Text>
+        {/* <TextInput
+          placeholder="Your Password"
           value={password}
           onChangeText={(text) => setPassword(text)}
-          secureTextEntry
-          style={{ height: 40, borderColor: "gray", borderWidth: 1, marginBottom: 10, width: '90%', borderRadius: 10, textAlign: 'center'}}
-        />
-    	  <Button title="Login" onPress={handleLogin} />
+          style={styles.textInput}
+        /> */}
+        <View>
+          <TextInput
+            placeholder="Your Password"
+            secureTextEntry={isPasswordVisible}
+            style={styles.textInput}
+          />
+          <TouchableOpacity
+            style={{ position: 'absolute', right: 30, top: 20 }}
+            onPress={() => setIsPasswordVisible(!isPasswordVisible)}
+          >
+            <Icon name={isPasswordVisible ? 'eye-slash' : 'eye'} size={22} color="gray" />
+          </TouchableOpacity>
+        </View>
+
+       <TouchableOpacity onPress={handleResetPassword}>
+          <Text style={styles.button} >Forgot Password </Text> 
+       </TouchableOpacity>
+        
+          <TouchableOpacity style={styles.container1} onPress={handleLogin}>        
+            <Text style={styles.container1.loginBut}>Login</Text>
+          </TouchableOpacity>
+
+        <View style={styles.container}>
+        <Text style={styles.button} onPress={handleSignUp}>Sign up</Text>
+            <Text style={{fontSize: 20, fontFamily: 'serif'}}>Don't have an account?</Text>
+            <TouchableOpacity onPress={handleSignUp}>
+            </TouchableOpacity>
+        </View>
       </View>
       
   )
