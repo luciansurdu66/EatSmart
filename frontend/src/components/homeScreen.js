@@ -8,7 +8,7 @@ const HomeScreen = ({ navigation }) => {
     <View style={styles.container}>
       
         <View style={styles.overlay}>
-          <Text style={styles.title}>Eat Smart</Text>
+          <Text style={styles.title}>Welcome to EatSmart</Text>
           <TouchableOpacity
             style={styles.button}
             onPress={() => navigation.navigate(LoginScreen)}

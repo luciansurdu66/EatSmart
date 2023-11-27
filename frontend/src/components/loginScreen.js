@@ -35,7 +35,6 @@ const LoginScreen = () => {
           placeholder="Your email"
           value={email}
           onChangeText={(text) => setEmail(text)}
-          secureTextEntry
           style={styles.textInput}
         />
         <Text style={styles.text}>Password</Text>

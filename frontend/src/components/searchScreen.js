@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import styles from '../styles/recipesearchScreen.style';
-import { View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
 
 const RecipeSearchScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -16,13 +16,14 @@ const RecipeSearchScreen = () => {
     { id: 7, name: 'Pasta', image: 'https://www.retetepractice.ro/wp-content/uploads/2018/04/Paste-carbonara-cu-smantana-si-bacon-1024x683.jpg', ingredients: 'Flour, Milk, Eggs, Baking Powder' },
     { id: 8, name: 'Sarmale', image: 'https://retete-thermomix.ro/wp-content/uploads/2021/12/Sarmale.webp', ingredients: 'Flour, Milk, Eggs, Baking Powder' },
     { id: 9, name: 'Salata', image: 'https://gabitzasgreenkitchen.com/wp-content/uploads/2016/05/Salata-Verde-Asortata-Cu-Avocado1.jpg', ingredients: 'Flour, Milk, Eggs, Baking Powder' },
-    { id: 10, name: 'Papanas', image: 'hhttps://depozitulderetete.ro/wp-content/uploads/2015/06/reteta-de-papanasi-08.jpg', ingredients: 'Flour, Milk, Eggs, Baking Powder' },
+    { id: 10, name: 'Papanas', image: 'https://depozitulderetete.ro/wp-content/uploads/2015/06/reteta-de-papanasi-08.jpg', ingredients: 'Flour, Milk, Eggs, Baking Powder' },
     { id: 11, name: 'Gulas', image: 'https://cumsa.ro/wp-content/uploads/2020/08/cum-sa-faci-gulas-unguresc-cu-carne-de-porc-cea-mai-buna-reteta.jpg', ingredients: 'Flour, Milk, Eggs, Baking Powder' },
     { id: 12, name: 'Paella', image: 'https://bucate-aromate.ro/wp-content/uploads/2023/07/Reteta-Paella-cu-fructe-de-mare-10.jpg', ingredients: 'Flour, Milk, Eggs, Baking Powder' },
   ];
+  
 
   const searchRecipes = () => {
-    const filteredRecipes = sampleBreakfastRecipes.filter(recipe =>
+    const filteredRecipes = sampleBreakfastRecipes.filter((recipe) =>
       recipe.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       recipe.ingredients.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -41,13 +42,13 @@ const RecipeSearchScreen = () => {
         onChange={(e) => setSearchQuery(e.target.value)}
         style={styles.textInput}
       />
-      <TouchableOpacity>
-      <Text onClick={searchRecipes} style={styles.button}>Search</Text>
+      <TouchableOpacity onPress={searchRecipes}>
+        <Text style={styles.button}>Search</Text>
       </TouchableOpacity>
       <View style={styles.recipeList}>
-        {searchResults.map(recipe => (
+        {searchResults.map((recipe) => (
           <View key={recipe.id} style={styles.recipeItem}>
-            <Image src={recipe.image} alt={recipe.name} style={styles.recipeImage} />
+            <Image source={{ uri: recipe.image }} style={styles.recipeImage} />
             <Text>{recipe.name}</Text>
             <Text>Ingredients: {recipe.ingredients}</Text>
           </View>
