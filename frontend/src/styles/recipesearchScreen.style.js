@@ -2,105 +2,67 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   recipeSearchView: {
-    textAlign: 'center',
-    margin: 0,
-    overflowY: 'auto', 
-  },
-
-  recipeList: {
-    display: 'flex',
-    flexWrap: 'wrap', 
-    justifyContent: 'center',
-    alignItems: 'flex-start', 
-    gap: '0px', 
-  },
-  recipeItem: {
-    border: '1px solid #ddd',
-    margin: '10px',
-    padding: '10px',
-    borderRadius: '0px',
-    textAlign: 'center',
-    width: '200px',
-  },
-  recipeImage: {
-    width: '100%',
-    height: '120px', 
-    objectFit: 'cover',
-    borderRadius: '5px 5px 0 0',
+    alignItems: 'center',
+    margin: 20,
   },
   recipeSearchText: {
-    fontSize: 40,
+    fontSize: 30,
     color: '#DA6A00',
-    paddingTop: 100,
+    paddingBottom: 10,
   },
   text: {
-    display: 'block',
-    fontSize: 20,
+    fontSize: 16,
     color: '#9796A1',
-    paddingTop: 30,
+    paddingBottom: 10,
   },
   textInput: {
     height: 40,
-    border: '1px solid gray',
-    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 20,
+    paddingLeft: 10,
+    marginBottom: 20,
     width: '90%',
-    borderRadius: 100,
-    textAlign: 'center',
+  },buttonLogin: {
+    backgroundColor: '#DA6A00', // Orange color
+    borderRadius: 20,
+    alignItems: 'center',
+    paddingVertical: 30, // Increase vertical padding for a bigger button
+    paddingHorizontal: 120, // Increase horizontal padding for a bigger button
+    margin: 10,
+    alignSelf: 'center',
+  },
+  button: {
+    color: 'white', // White text color
+    fontSize: 20,
   },
   recipeList: {
-    listStyleType: 'none',
-    padding: 0,
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
   },
   recipeItem: {
     border: '1px solid #ddd',
     margin: 10,
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 10,
+    alignItems: 'center',
+    width: 180,
   },
-  containerCircle: {
-    position: 'relative',
-  },
-  circleShape1: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
-    backgroundColor: '#68904D',
-    position: 'absolute',
-    top: -500,
-    right: 100,
-    zIndex: 20,
-  },
-  recipeItem: {
-    border: '1px solid #ddd',
-    margin: 10,
-    padding: 10,
-    borderRadius: 5,
-    textAlign: 'center',
-  },
-
   recipeImage: {
     width: '100%',
-    height: '200px',
-    objectFit: 'cover',
-    borderRadius: '5px 5px 0 0',
+    height: 120,
+    borderRadius: 10,
+    marginBottom: 10,
   },
-
- 
-  recipeList: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-    gap: '20px',
-    margin: '20px 0',
+  recipeName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
   },
-
-  recipeSearchView: {
-    textAlign: 'center',
-    margin: 20,
+  ingredients: {
+    fontSize: 14,
   },
-  recipeList: {
-    overflowY: 'scroll', 
-    height: '80%', 
-  }
 });
 
 export default styles;
