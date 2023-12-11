@@ -59,9 +59,7 @@ const styles = StyleSheet.create({
         fontFamily: 'serif',
 
         textShadowColor: 'transparent',
-
-
-    },
+    }, 
     container1: {
         backgroundColor: '#DA6A00',
         borderRadius: 50,
@@ -82,5 +80,6 @@ const styles = StyleSheet.create({
 });
 
 export default styles;
+
 
 

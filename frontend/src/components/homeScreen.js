@@ -6,17 +6,16 @@ import AddIngredient from './addIngredient';
 import styles from '../styles/homeScreen.style';
 import LoginScreen from './loginScreen';
 import SignUpScreen from './signupScreen';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient'; 
 
 const HomeScreen = ({ navigation }) => {
   const handleSignIn = () => {
     navigation.navigate("LoginScreen");
   }
-  const backgroundImageUrl = 'https://postimg.cc/Z9xsRjmm'
+
   return (
-    <ImageBackground source={{ uri: backgroundImageUrl }}
-      style={styles.backgroundImage}
-    >
+    // <ImageBackground source={require('./homescreen.jpeg')} style={{width: '100%', height: '100%'}}>
+    //     <Text>
     <LinearGradient colors={['#53587300', '#191B2F']} style={styles.container}>
       <View style={styles.welcomeContainer}>
         <Text style={styles.welcomeLine}>Welcome</Text>
@@ -38,10 +37,11 @@ const HomeScreen = ({ navigation }) => {
             
         </View>
     </LinearGradient>
-  </ImageBackground>
+  // </ImageBackground>
   );
 };
 
 
 
 export default HomeScreen;
+
