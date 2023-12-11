@@ -1,52 +1,27 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { View, Text, Button, TextInput, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, TextInput } from "react-native";
+import RNPickerSelect from 'react-native-picker-select';
 
 export default class AddIngredient extends Component {
     constructor(props) {
         super(props);
 
-        this.onChangeIngredientName = this.onChangeIngredientName.bind(this);
-        this.onChangeIngredientQuantity = this.onChangeIngredientQuantity.bind(this);
-        this.onChangeIngredientUnit = this.onChangeIngredientUnit.bind(this);
-        this.onChangeIngredientDescription = this.onChangeIngredientDescription.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-
         this.state = {
             ingredient_name: "",
             ingredient_quantity: "",
-            ingredient_unit: "",
+            ingredient_unit: null,
             ingredient_description: "",
         };
     }
 
-    onChangeIngredientName(e) {
+    onChangeIngredient = (field, value) => {
         this.setState({
-            ingredient_name: e.target.value,
+            [field]: value,
         });
-    }
+    };
 
-    onChangeIngredientQuantity(e) {
-        this.setState({
-            ingredient_quantity: e.target.value,
-        });
-    }
-
-    onChangeIngredientUnit(e) {
-        this.setState({
-            ingredient_unit: e.target.value,
-        });
-    }
-
-    onChangeIngredientDescription(e) {
-        this.setState({
-            ingredient_description: e.target.value,
-        });
-    }
-
-    onSubmit(e) {
-        e.preventDefault();
-
+    onSubmit = () => {
         const newIngredient = {
             ingredient_name: this.state.ingredient_name,
             ingredient_quantity: this.state.ingredient_quantity,
@@ -54,17 +29,16 @@ export default class AddIngredient extends Component {
             ingredient_description: this.state.ingredient_description,
         };
 
-        axios
-            .post("http://localhost:5000/ingredients/add", newIngredient)
+        axios.post("http://localhost:5000/ingredients/add", newIngredient)
             .then((res) => console.log(res.data));
 
         this.setState({
             ingredient_name: "",
             ingredient_quantity: "",
-            ingredient_unit: "",
+            ingredient_unit: null,
             ingredient_description: "",
         });
-    }
+    };
 
     render() {
         return (
@@ -74,31 +48,66 @@ export default class AddIngredient extends Component {
                     style={styles.textInput}
                     placeholder="Ingredient Name"
                     value={this.state.ingredient_name}
-                    onChange={this.onChangeIngredientName}
+                    onChangeText={(text) => this.onChangeIngredient('ingredient_name', text)}
                 />
                 <TextInput
                     style={styles.textInput}
                     placeholder="Ingredient Quantity"
                     value={this.state.ingredient_quantity}
-                    onChange={this.onChangeIngredientQuantity}
+                    onChangeText={(text) => this.onChangeIngredient('ingredient_quantity', text)}
+                    keyboardType="numeric"
+                />
+                <RNPickerSelect
+                         placeholder={{ label: "Select your unit", value: null }}
+                    onValueChange={(value) =>{ 
+                            this.onChangeIngredient('ingredient_unit', value);
+                    }}
+                    items={[
+                        { label: 'Kg', value: 'kg' },
+                        { label: 'g', value: 'g' },
+                        { label: 'mg', value: 'mg' },
+                        { label: 'l', value: 'l'},
+                        { label: 'ml', value: 'ml'},
+                        // Adaugă alte opțiuni de unitate de măsură
+                    ]}
+                    style={{
+                        inputIOS: {
+                            fontSize: 16,
+                            paddingVertical: 12,
+                            paddingHorizontal: 10,
+                            borderWidth: 1,
+                            borderColor: 'gray',
+                            borderRadius: 4,
+                            color: 'black',
+                            paddingRight: 30 // to ensure the text is never behind the icon
+                        },
+                        inputAndroid: {
+                            fontSize: 16,
+                            paddingHorizontal: 10,
+                            paddingVertical: 8,
+                            borderWidth: 0.5,
+                            borderColor: 'purple',
+                            borderRadius: 8,
+                            color: 'black',
+                            paddingRight: 30, // to ensure the text is never behind the icon
+                            textAlign: "left"
+                        }
+                    }}
+                    
                 />
                 <TextInput
-                    style={styles.textInput}
-                    placeholder="Ingredient Unit"
-                    value={this.state.ingredient_unit}
-                    onChange={this.onChangeIngredientUnit}
-                />
-                <TextInput
-                    style={styles.textInput}
+                    style={[styles.textInput, styles.multilineInput]}
                     placeholder="Ingredient Description"
                     value={this.state.ingredient_description}
-                    onChange={this.onChangeIngredientDescription}
+                    onChangeText={(text) => this.onChangeIngredient('ingredient_description', text)}
+                    multiline
                 />
-                <Button
-                    title="Add Ingredient"
-                    onPress={this.onSubmit}
+                <TouchableOpacity
                     style={styles.button}
-                />
+                    onPress={this.onSubmit}
+                >
+                    <Text style={styles.buttonText}>Add Ingredient</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -111,41 +120,34 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingTop: 40,
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
     },
-    titleText: {
-        fontSize: 10,
+    header: {
+        fontSize: 24,
         fontWeight: 'bold',
-        color: 'black',
-        textAlign: 'center',
-        marginBottom: 20
+        marginBottom: 20,
     },
-    input: {
+    textInput: {
         borderWidth: 1,
-        borderColor: '#777',
-        padding: 8,
-        margin: 10,
-        width: 200
+        borderColor: '#ccc',
+        borderRadius: 8,
+        padding: 10,
+        marginBottom: 15,
+        width: '100%',
+    },
+    multilineInput: {
+        height: 100,
     },
     button: {
-        alignItems: 'center',
         backgroundColor: 'black',
-        padding: 10,
-        margin: 10,
-        width: 300
+        borderRadius: 8,
+        paddingVertical: 15,
+        paddingHorizontal: 30,
+        alignItems: 'center',
     },
     buttonText: {
-        fontSize: 50,
+        color: 'white',
+        fontSize: 16,
         fontWeight: 'bold',
-        color: 'black',
-        textAlign: 'center',
-        marginBottom: 20
     },
-    text: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: 'black',
-        textAlign: 'center',
-        marginBottom: 20
-    }
-    });
+});

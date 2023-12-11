@@ -15,11 +15,12 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="AddIngredient" component={AddIngredient} />
-        <Stack.Screen name="HomeScreen" component={HomeScreen} title='Home' />
+
+        {/* <Stack.Screen name="AddIngredient" component={AddIngredient} /> */}
+        <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} options={{ headerShown: false }} />
         <Stack.Screen name="AddIngredient" component={AddIngredient} options={{ headerShown: false }}/>
         <Stack.Screen name="RecipeSearchScreen" component={RecipeSearchScreen}  options={{ headerShown: false }} />
         <Stack.Screen name="MyFridge" component={MyFridge} />
