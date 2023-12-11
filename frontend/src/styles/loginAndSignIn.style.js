@@ -56,7 +56,9 @@ const styles = StyleSheet.create({
         color: '#DA6A00',
         fontSize: 20,
         textShadowColor: 'transparent',
-        fontFamily: 'serif'
+        fontFamily: 'serif',
+
+        textShadowColor: 'transparent',
 
 
     },

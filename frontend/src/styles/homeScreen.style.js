@@ -86,16 +86,16 @@ const styles = StyleSheet.create({
 
 
     },
-//       backgroundImage: {
-//         flex: 1,
-//         resizeMode: 'cover', 
-//         justifyContent: 'center',
-//       },
-//       contentContainer: {
-//         flex: 1,
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//       },
+      backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover', 
+        justifyContent: 'center',
+      },
+      contentContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
     
   });
 

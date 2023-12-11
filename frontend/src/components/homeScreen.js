@@ -12,12 +12,11 @@ const HomeScreen = ({ navigation }) => {
   const handleSignIn = () => {
     navigation.navigate("LoginScreen");
   }
-
+  const backgroundImageUrl = 'https://postimg.cc/Z9xsRjmm'
   return (
-    // <ImageBackground
-    // source={require('./frontend/assets/images/fruitdish.jpg')}
-    //   style={styles.backgroundImage}
-    // >
+    <ImageBackground source={{ uri: backgroundImageUrl }}
+      style={styles.backgroundImage}
+    >
     <LinearGradient colors={['#53587300', '#191B2F']} style={styles.container}>
       <View style={styles.welcomeContainer}>
         <Text style={styles.welcomeLine}>Welcome</Text>
@@ -27,7 +26,7 @@ const HomeScreen = ({ navigation }) => {
     <View style={styles.overlay}>
           <TouchableOpacity
             style={styles.container1}
-            onPress={() => navigation.navigate(SignUpScreen)}>
+            onPress={() => navigation.navigate(LoginScreen)}>
             <Text style={styles.container1.startBut}>Start with email</Text>
             </TouchableOpacity>
         </View>
@@ -39,7 +38,7 @@ const HomeScreen = ({ navigation }) => {
             
         </View>
     </LinearGradient>
-    // </ImageBackground>
+  </ImageBackground>
   );
 };
 

@@ -71,8 +71,9 @@ const LoginScreen = () => {
           </TouchableOpacity>
 
         <View style={styles.container}>
+        <Text style={{fontSize: 20, fontFamily: 'serif'}}>Don't have an account?</Text>
         <Text style={styles.button} onPress={handleSignUp}>Sign up</Text>
-            <Text style={{fontSize: 20, fontFamily: 'serif'}}>Don't have an account?</Text>
+            
             <TouchableOpacity onPress={handleSignUp}>
             </TouchableOpacity>
         </View>

@@ -1,48 +1,28 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { View, Text, Button, TextInput, StyleSheet, ActivityIndicator } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button, ActivityIndicator } from "react-native";
+import RNPickerSelect from 'react-native-picker-select';
 
 export default class AddIngredient extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            ingredientName: "",
-            ingredientQuantity: "",
-            ingredientUnit: "",
-            ingredientDescription: "",
-            loading: false,
-            error: null,
+            ingredient_name: "",
+            ingredient_quantity: "",
+            ingredient_unit: null,
+            ingredient_description: "",
         };
     }
 
-    onChangeIngredientName(text) {
+    onChangeIngredient = (field, value) => {
         this.setState({
-            ingredientName: text,
+            [field]: value,
         });
-    }
+    };
 
-    onChangeIngredientQuantity(text) {
-        this.setState({
-            ingredientQuantity: text,
-        });
-    }
 
-    onChangeIngredientUnit(text) {
-        this.setState({
-            ingredientUnit: text,
-        });
-    }
-
-    onChangeIngredientDescription(text) {
-        this.setState({
-            ingredientDescription: text,
-        });
-    }
-
-    onSubmit() {
-        this.setState({ loading: true, error: null });
-
+    onSubmit = () => {
         const newIngredient = {
             ingredientName: this.state.ingredientName,
             ingredientQuantity: this.state.ingredientQuantity,
@@ -50,27 +30,17 @@ export default class AddIngredient extends Component {
             ingredientDescription: this.state.ingredientDescription,
         };
 
-        axios
-            .post("http://localhost:5000/ingredients/add", newIngredient)
-            .then((res) => {
-                console.log(res.data);
-                // Additional handling for success, if needed.
-            })
-            .catch((error) => {
-                console.error("Error adding ingredient:", error);
-                this.setState({ error: "Error adding ingredient." });
-            })
-            .finally(() => {
-                this.setState({ loading: false });
-            });
+        axios.post("http://localhost:5000/ingredients/add", newIngredient)
+            .then((res) => console.log(res.data));
 
         this.setState({
-            ingredientName: "",
-            ingredientQuantity: "",
-            ingredientUnit: "",
-            ingredientDescription: "",
+            ingredient_name: "",
+            ingredient_quantity: "",
+            ingredient_unit: null,
+            ingredient_description: "",
+
         });
-    }
+    };
 
     render() {
         return (
@@ -79,40 +49,68 @@ export default class AddIngredient extends Component {
                 <TextInput
                     style={styles.textInput}
                     placeholder="Ingredient Name"
-                    value={this.state.ingredientName}
-                    onChangeText={(text) => this.onChangeIngredientName(text)}
+                    value={this.state.ingredient_name}
+                    onChangeText={(text) => this.onChangeIngredient('ingredient_name', text)}
+
                 />
                 <TextInput
                     style={styles.textInput}
                     placeholder="Ingredient Quantity"
-                    value={this.state.ingredientQuantity}
-                    onChangeText={(text) => this.onChangeIngredientQuantity(text)}
+                    value={this.state.ingredient_quantity}
+                    onChangeText={(text) => this.onChangeIngredient('ingredient_quantity', text)}
+                    keyboardType="numeric"
+                />
+                <RNPickerSelect
+                         placeholder={{ label: "Select your unit", value: null }}
+                    onValueChange={(value) =>{ 
+                            this.onChangeIngredient('ingredient_unit', value);
+                    }}
+                    items={[
+                        { label: 'Kg', value: 'kg' },
+                        { label: 'g', value: 'g' },
+                        { label: 'mg', value: 'mg' },
+                        { label: 'l', value: 'l'},
+                        { label: 'ml', value: 'ml'},
+                        // Adaugă alte opțiuni de unitate de măsură
+                    ]}
+                    style={{
+                        inputIOS: {
+                            fontSize: 16,
+                            paddingVertical: 12,
+                            paddingHorizontal: 10,
+                            borderWidth: 1,
+                            borderColor: 'gray',
+                            borderRadius: 4,
+                            color: 'black',
+                            paddingRight: 30 // to ensure the text is never behind the icon
+                        },
+                        inputAndroid: {
+                            fontSize: 16,
+                            paddingHorizontal: 10,
+                            paddingVertical: 8,
+                            borderWidth: 0.5,
+                            borderColor: 'purple',
+                            borderRadius: 8,
+                            color: 'black',
+                            paddingRight: 30, // to ensure the text is never behind the icon
+                            textAlign: "left"
+                        }
+                    }}
+                    
                 />
                 <TextInput
-                    style={styles.textInput}
-                    placeholder="Ingredient Unit"
-                    value={this.state.ingredientUnit}
-                    onChangeText={(text) => this.onChangeIngredientUnit(text)}
-                />
-                <TextInput
-                    style={styles.textInput}
+                    style={[styles.textInput, styles.multilineInput]}
                     placeholder="Ingredient Description"
-                    value={this.state.ingredientDescription}
-                    onChangeText={(text) => this.onChangeIngredientDescription(text)}
+                    value={this.state.ingredient_description}
+                    onChangeText={(text) => this.onChangeIngredient('ingredient_description', text)}
+                    multiline
                 />
-                {this.state.loading ? (
-                    <ActivityIndicator style={styles.loader} size="large" color="blue" />
-                ) : (
-                    <Button
-                        title="Add Ingredient"
-                        onPress={() => this.onSubmit()}
-                        color="green"
-                        style={styles.button}
-                    />
-                )}
-                {this.state.error && <Text style={styles.errorText}>{this.state.error}</Text>}
-                <View style={styles.spacing}></View>
-                {}
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={this.onSubmit}
+                >
+                    <Text style={styles.buttonText}>Add Ingredient</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -126,34 +124,34 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         paddingHorizontal: 20,
         paddingTop: 40,
+        paddingHorizontal: 20,
     },
     header: {
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 20,
-        color: 'black',
     },
     textInput: {
         borderWidth: 1,
-        borderColor: '#777',
-        padding: 8,
-        margin: 10,
-        width: 300,
+        borderColor: '#ccc',
+        borderRadius: 8,
+        padding: 10,
+        marginBottom: 15,
+        width: '100%',
+    },
+    multilineInput: {
+        height: 100,
     },
     button: {
-        padding: 10,
-        margin: 0, 
-        width: 300,
-        backgroundColor: 'green',
+        backgroundColor: 'black',
+        borderRadius: 8,
+        paddingVertical: 15,
+        paddingHorizontal: 30,
+        alignItems: 'center',
     },
-    spacing: {
-        height: 40, 
-    },
-    loader: {
-        margin: 20,
-    },
-    errorText: {
-        color: 'orange',
-        marginTop: 10,
+    buttonText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold',
     },
 });
