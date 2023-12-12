@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button, ActivityIndicator } from "react-native";
-import RNPickerSelect from 'react-native-picker-select';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button, ActivityIndicator, ImageBackground } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { SelectList } from "react-native-dropdown-select-list";
 
@@ -20,9 +19,7 @@ export default class AddIngredient extends Component {
     }
 
     onChangeIngredient = (field, value) => {
-        this.setState({
-            [field]: value,
-        });
+        this.setState({[field]: value});
     };
     
 
@@ -34,8 +31,8 @@ export default class AddIngredient extends Component {
             ingredientDescription: this.state.ingredientDescription,
         };
 
-        axios.post("http://localhost:5000/ingredients/add", newIngredient)
-            .then((res) => console.log(res.data));
+        // axios.post("http://localhost:5000/ingredients/add", newIngredient)
+        //     .then((res) => console.log(res.data));
 
         this.setState({
             ingredient_name: "",
@@ -48,7 +45,7 @@ export default class AddIngredient extends Component {
 
     render() {
         return (
-            <View style={styles.wrapper}>
+        <ImageBackground source={require('../../images/addingr.jpg')} style={styles.wrapper}>
                 <Text style={styles.header}>Add New Ingredient</Text>
                 <TextInput
                     style={styles.textInput}
@@ -67,62 +64,14 @@ export default class AddIngredient extends Component {
                     keyboardType="numeric"
                 />
                 <SelectList data={[{key:'1', value:'kg'},
-      {key:'2', value:'g'},
-      {key:'3', value:'mg'},
-      {key:'4', value:'l'},
-      {key:'5', value:'ml'},
-      ]}>
-        style={{        inputAndroid: {
-                            paddingHorizontal: 10,
-                            paddingVertical: 8,
-                            borderWidth: 0.5,
-                            borderColor: '68904D',
-                            borderRadius: 8,
-                            color: 'gray',
-                            marginBottom: 15,
-                            paddingRight: 30, // to ensure the text is never behind the icon
-                            textAlign: "left"
-                        },}}
+                                {key:'2', value:'g'},
+                                {key:'3', value:'mg'},
+                                {key:'4', value:'l'},
+                                {key:'5', value:'ml'},
+                                ]}
+                                onSelect={(value) => this.onChangeIngredient('ingredient_unit', value)}
+                                boxStyles={{width: 353, marginBottom: 15, borderColor: '#68904D',}}>
                 </ SelectList>
-                {/* <RNPickerSelect
-                         placeholder={{ label: "Select your unit", value: null }}
-                    onValueChange={(value) =>{ 
-                            this.onChangeIngredient('ingredient_unit', value);
-                    }}
-                    items={[
-                        { label: 'Kg', value: 'kg' },
-                        { label: 'g', value: 'g' },
-                        { label: 'mg', value: 'mg' },
-                        { label: 'l', value: 'l'},
-                        { label: 'ml', value: 'ml'},
-                        // Adaugă alte opțiuni de unitate de măsură
-                    ]}
-                    style={{
-                        inputIOS: {
-                            paddingVertical: 12,
-                            paddingHorizontal: 10,
-                            borderWidth: 1,
-                            borderColor: '#68904D',
-                            borderRadius: 4,
-                            color: 'black',
-                            marginBottom: 15,
-                            paddingRight: 30 // to ensure the text is never behind the icon
-                        },
-                        inputAndroid: {
-                            paddingHorizontal: 10,
-                            paddingVertical: 8,
-                            borderWidth: 0.5,
-                            borderColor: '68904D',
-                            borderRadius: 8,
-                            color: 'gray',
-                            marginBottom: 15,
-                            paddingRight: 30, // to ensure the text is never behind the icon
-                            textAlign: "left"
-                        },
-                    placeholder: {color:'gray'}
-                    }}
-                    
-                /> */}
                 <TextInput
                     style={[styles.textInput, styles.multilineInput]}
                     placeholder="Ingredient Description"
@@ -137,7 +86,7 @@ export default class AddIngredient extends Component {
                 >
                     <Text style={styles.buttonText}>Add Ingredient</Text>
                 </TouchableOpacity>
-            </View>
+        </ImageBackground>
         );
     }
 }
@@ -149,7 +98,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
         paddingHorizontal: 20,
-        paddingTop: "30%",
+        paddingTop: "10%",
         paddingHorizontal: 20,
     },
     header: {
@@ -184,6 +133,10 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
         fontWeight: 'bold',
+    },
+    selectList: {
+        width: '100%', // sau orice altă valoare dorită
+        marginTop: 10,  // sau orice alt spațiere dorită
     },
 });
 
