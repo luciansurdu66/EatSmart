@@ -12,6 +12,11 @@ const SignUpScreen = () =>{
 
     const navigation = useNavigation();
 
+    const handleBackButton = () => {
+    navigation.navigate('loginScreen');
+  };
+
+
     const handleSignUp = () => {
         // Implementează logica de autentificare aici
         console.SignUp("Inregistrare: ",fullName, email, password);
@@ -53,3 +58,4 @@ const SignUpScreen = () =>{
 }
 
 export default SignUpScreen
+

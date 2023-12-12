@@ -15,7 +15,6 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} options={{ headerShown: false }} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} title='Home' />
         <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={{ headerShown: false }}/>
