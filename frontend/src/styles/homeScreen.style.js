@@ -4,7 +4,6 @@ const styles = StyleSheet.create({
     
     container: {
       flex: 1,
-      backgroundColor: '#B784A7',
     },
     overlay: {
       flex: 1,
