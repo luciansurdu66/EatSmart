@@ -69,7 +69,9 @@ export default class AddIngredient extends Component {
                                 {key:'4', value:'l'},
                                 {key:'5', value:'ml'},
                                 ]}
-                                onSelect={(value) => this.onChangeIngredient('ingredient_unit', value)}
+                                onSelect={(value) =>{console.log(value)
+                                    this.onChangeIngredient('ingredient_unit', value)}} 
+                                    
                                 boxStyles={{width: 353, marginBottom: 15, borderColor: '#68904D',}}>
                 </ SelectList>
                 <TextInput

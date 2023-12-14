@@ -20,6 +20,6 @@ db.sequelize = sequelize;
 
 
 db.User = require('./userModel')(sequelize, Sequelize);
-
+db.Ingredient = require('./ingredientModel')(sequelize, Sequelize);
 module.exports = db;
 
