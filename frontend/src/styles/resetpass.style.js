@@ -36,6 +36,36 @@ const styles = StyleSheet.create({
         alignSelf: 'center',    
         color: '#DA6A00',
 },
+CircleShape1: {
+    width: 110,
+    height: 110,
+    borderRadius: 150 / 2,
+    backgroundColor: '#EE9B01',
+    top: -510,
+    right: -40,
+    zindex: 20,
+    
+},
+CircleShape2: {
+    width: 150,
+    height: 150,
+    borderRadius: 150 / 2,
+    backgroundColor: '#DA6A00',
+    top: -670,
+    right: 35,
+    zindex: 20,
+    
+},
+CircleShape3: {
+    width: 90,
+    height: 90,
+    borderRadius: 150 / 2,
+    backgroundColor: '#C8D2D1',
+    top: -370,
+    right: 50,
+    zindex: 20,
+    
+},
 container1: {
     backgroundColor: '#DA6A00',
     borderRadius: 50,

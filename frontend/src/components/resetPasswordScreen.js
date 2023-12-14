@@ -4,6 +4,8 @@ import { useNavigation } from "@react-navigation/native";
 import AddIngredient from "./addIngredient";
 import styles from "../styles/resetpass.style";
 import { Colors } from "react-native/Libraries/NewAppScreen";
+//import styles from "../styles/loginAndSignIn.style";
+
 
 
 
@@ -22,13 +24,14 @@ const ResetPasswordScreen = () => {
           placeholder="enter your email"
           value={email}
           onChangeText={(text) => setEmail(text)}
-          secureTextEntry
           style={styles.textInput}
         />
-         <TouchableOpacity style={styles.container1} onPress={handleLogin}>        
-            <Text style={styles.container1.SendBut}>Send new password</Text>
-          </TouchableOpacity>
-
+        <TouchableOpacity style={styles.container1} onPress={handleLogin}>        
+          <Text style={styles.container1.SendBut}>Send new password</Text>
+        </TouchableOpacity>
+        <View style={styles.CircleShape3}/>
+        <View style={styles.CircleShape1}/>
+        <View style={styles.CircleShape2}/>
         </View>
       )
 
