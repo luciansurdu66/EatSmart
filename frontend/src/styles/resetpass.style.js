@@ -14,12 +14,12 @@ const styles = StyleSheet.create({
     textInput:
     {
     top: 40,
-     height: 65, 
+     height: 60, 
      borderColor: "gray", 
      borderWidth: 1, 
      marginBottom: 10, 
      width: '90%',
-     borderRadius: 10, 
+     borderRadius: 20, 
      textAlign: 'center',
      alignSelf: 'center',
      fontFamily: 'serif',
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 10,
         margin: 10,
-        borderRadius: 10,
+        borderRadius: 5,
         alignSelf: 'center',    
         color: '#DA6A00',
 },
@@ -69,17 +69,17 @@ CircleShape3: {
 container1: {
     backgroundColor: '#DA6A00',
     borderRadius: 50,
-    padding: 10,
-    width: '75%',
+    padding: 7,
+    width: '70%',
     alignSelf: 'center',
     alignItems: 'center',  // Centrare orizontală
-    top: 90,
+    top: 70,
     SendBut: {
-        margin: 10,
+        margin: 8,
         alignSelf: 'center',
         textAlign: 'center',
         color: 'white',
-        fontSize: 25,
+        fontSize: 23,
         fontFamily: 'serif'
     },
 },
