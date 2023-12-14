@@ -15,15 +15,15 @@ exports.registerUser = async (req, res) => {
 }
 
 exports.loginUser = async (req, res) => {
-    const {username, password} = req.body;
+    const {email, password} = req.body;
 
     try {
-        const user = await db.User.findOne({where: {username}});
+        const user = await db.User.findOne({where: {email}});
 
         if (user && user.password === password) {
             res.status(200).json({user, message: 'User logged in successfully'});
         } else {
-            res.status(400).json({err, message:'Incorrect username or password'});
+            res.status(400).json({err, message:'Incorrect email or password'});
         }
     } catch (err) {
         console.log(err);

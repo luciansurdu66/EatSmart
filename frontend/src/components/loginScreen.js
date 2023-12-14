@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { View, TextInput, Text, Touchable, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import AddIngredient from "./addIngredient";
 import styles from "../styles/loginAndSignIn.style";
 import SignUpScreen from "./signupScreen";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MyFridge from "./myFridge";
+import axios from "axios";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -14,8 +14,18 @@ const LoginScreen = () => {
   const navigation = useNavigation();
 
   const handleLogin = () => {
-    console.log("Autentificare: ", email, password);
-    navigation.navigate("MyFridge");
+    const user = {
+      email: email,
+      password: password,
+    };
+    console.log(user);
+    axios
+      .post("http://10.0.2.2:5000/auth/login", user)
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+        navigation.navigate("MyFridge");
+      });
   };
   const handleResetPassword = () => {
     navigation.navigate("ResetPasswordScreen");
@@ -38,7 +48,6 @@ const LoginScreen = () => {
           placeholder="Your email"
           value={email}
           onChangeText={(text) => setEmail(text)}
-          secureTextEntry
           style={styles.textInput}
         />
         <Text style={styles.text}>Password</Text>
@@ -47,6 +56,8 @@ const LoginScreen = () => {
             placeholder="Your Password"
             secureTextEntry={isPasswordVisible}
             style={styles.textInput}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
           />
           <TouchableOpacity
             style={{ position: 'absolute', right: 30, top: 20 }}

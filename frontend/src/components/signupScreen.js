@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, TextInput, Button, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import LoginScreen from "./loginScreen";
 import styles from "../styles/loginAndSignIn.style";
 import axios from "axios";
 
@@ -26,7 +25,7 @@ const SignUpScreen = () =>{
         };
         console.log(user);
         axios
-          .post("http://localhost:5000/auth/register", user)
+          .post("http://10.0.2.2:5000/auth/register", user)
           .then((res) => {
             console.log(res);
             console.log(res.data);
@@ -59,7 +58,7 @@ const SignUpScreen = () =>{
             style={styles.textInput}
           />
           <TouchableOpacity style={styles.container1} onPress={handleSignUp}>        
-            <Text style={styles.container1.loginBut}>Sing Up</Text>
+            <Text style={styles.container1.loginBut}>Sign Up</Text>
           </TouchableOpacity>
           <View style={styles.CircleShape3}
           />
