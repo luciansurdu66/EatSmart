@@ -1,0 +1,961 @@
+From 7d94d723af926f0d69d1c3831434d090ecd173e3 Mon Sep 17 00:00:00 2001
+From: Your Name <ruben.radu@stud.ubbcluj.ro>
+Date: Thu, 14 Dec 2023 16:51:37 +0200
+Subject: [PATCH] Backend gata
+
+---
+ .../__pycache__/__init__.cpython-311.pyc      | Bin 175 -> 180 bytes
+ .../__pycache__/settings.cpython-311.pyc      | Bin 3157 -> 3162 bytes
+ .../backend/__pycache__/urls.cpython-311.pyc  | Bin 1238 -> 1243 bytes
+ .../backend/__pycache__/wsgi.cpython-311.pyc  | Bin 698 -> 702 bytes
+ backend/backend/db.sqlite3                    | Bin 131072 -> 151552 bytes
+ .../__pycache__/__init__.cpython-311.pyc      | Bin 198 -> 184 bytes
+ .../__pycache__/admin.cpython-311.pyc         | Bin 253 -> 239 bytes
+ .../__pycache__/apps.cpython-311.pyc          | Bin 579 -> 565 bytes
+ .../__pycache__/models.cpython-311.pyc        | Bin 910 -> 896 bytes
+ .../__pycache__/serializers.cpython-311.pyc   | Bin 867 -> 853 bytes
+ .../__pycache__/tests.cpython-311.pyc         | Bin 4963 -> 181 bytes
+ .../__pycache__/urls.cpython-311.pyc          | Bin 685 -> 671 bytes
+ .../__pycache__/views.cpython-311.pyc         | Bin 1093 -> 1079 bytes
+ .../__pycache__/0001_initial.cpython-311.pyc  | Bin 1141 -> 1127 bytes
+ .../__pycache__/__init__.cpython-311.pyc      | Bin 209 -> 195 bytes
+ .../__pycache__/__init__.cpython-311.pyc      | Bin 176 -> 181 bytes
+ .../__pycache__/admin.cpython-311.pyc         | Bin 231 -> 530 bytes
+ .../user_api/__pycache__/apps.cpython-311.pyc | Bin 550 -> 555 bytes
+ .../__pycache__/models.cpython-311.pyc        | Bin 2524 -> 3074 bytes
+ .../__pycache__/serializers.cpython-311.pyc   | Bin 2590 -> 2595 bytes
+ .../__pycache__/tests.cpython-311.pyc         | Bin 0 -> 3391 bytes
+ .../user_api/__pycache__/urls.cpython-311.pyc | Bin 822 -> 963 bytes
+ .../__pycache__/validations.cpython-311.pyc   | Bin 2150 -> 2155 bytes
+ .../__pycache__/views.cpython-311.pyc         | Bin 3990 -> 4773 bytes
+ backend/backend/user_api/admin.py             |   7 +-
+ .../migrations/0002_alter_appuser_username.py |  18 ++++
+ ...0003_appuser_is_active_appuser_is_staff.py |  23 +++++
+ .../__pycache__/0001_initial.cpython-311.pyc  | Bin 2106 -> 2111 bytes
+ ...002_alter_appuser_username.cpython-311.pyc | Bin 0 -> 868 bytes
+ ...is_active_appuser_is_staff.cpython-311.pyc | Bin 0 -> 980 bytes
+ .../__pycache__/__init__.cpython-311.pyc      | Bin 187 -> 192 bytes
+ backend/backend/user_api/models.py            |  62 +++++++------
+ backend/backend/user_api/tests.py             |  48 +++++++++-
+ backend/backend/user_api/urls.py              |   2 +
+ backend/backend/user_api/views.py             |  82 ++++++++++--------
+ 35 files changed, 177 insertions(+), 65 deletions(-)
+ create mode 100644 backend/backend/user_api/__pycache__/tests.cpython-311.pyc
+ create mode 100644 backend/backend/user_api/migrations/0002_alter_appuser_username.py
+ create mode 100644 backend/backend/user_api/migrations/0003_appuser_is_active_appuser_is_staff.py
+ create mode 100644 backend/backend/user_api/migrations/__pycache__/0002_alter_appuser_username.cpython-311.pyc
+ create mode 100644 backend/backend/user_api/migrations/__pycache__/0003_appuser_is_active_appuser_is_staff.cpython-311.pyc
+
+diff --git a/backend/backend/backend/__pycache__/__init__.cpython-311.pyc b/backend/backend/backend/__pycache__/__init__.cpython-311.pyc
+index 945379b050e3e6a597aff48fabaec5c68e5c301b..0d3810ceb36710983aeb88d03216e2dc3d4dc944 100644
+GIT binary patch
+delta 50
+zcmZ3_xP_5>IWI340}zC<R!`(Mm3DWwiU}=FEh>%)Doskwi*ZRU&MwI>h)K@RnHUxc
+E08)?-m;e9(
+
+delta 45
+zcmdnOxSo-FIWI340}$96giho(6?1a7iU}=FEh>%)N-WKZaY-%CF3B&L7##@!1&$4U
+
+diff --git a/backend/backend/backend/__pycache__/settings.cpython-311.pyc b/backend/backend/backend/__pycache__/settings.cpython-311.pyc
+index 86e94d89b84d90f88e0edfb527bff5a63b9de5d6..cd90295a480aa56ac90bd0712638bd716963f360 100644
+GIT binary patch
+delta 53
+zcmcaAaZ7@GIWI340}zC<R&V6a=8|@Iwu%WYPAw{q2`WuW&5LnKEzT~<FNjIb&)M9=
+Hb&?SPox2f5
+
+delta 48
+zcmca5aaDqQIWI340}w1S2;In?%_ZjKY!wq)oLW>I6O>q*6XTLvoL!P%uz4caNk#xw
+C{11-+
+
+diff --git a/backend/backend/backend/__pycache__/urls.cpython-311.pyc b/backend/backend/backend/__pycache__/urls.cpython-311.pyc
+index d861eefcad9653304a16277850e138b18882912f..1e9f1832c953490ec457f55b16b7468353ba81b9 100644
+GIT binary patch
+delta 52
+zcmcb{d7G1aIWI340}zC<R&V5f$Sm#bY!wq)oLW>I6I7a%niu1eTAW>yUl5a=pEH?>
+G<q80kDiH1f
+
+delta 47
+zcmcc3d5x2MIWI340}#wJ2;Ip2kXg*m*(xTqIJKxaCMdBqC&neUIJ+djU@|+)6#z>P
+B4>SM(
+
+diff --git a/backend/backend/backend/__pycache__/wsgi.cpython-311.pyc b/backend/backend/backend/__pycache__/wsgi.cpython-311.pyc
+index 5a1825033cfa6c2d1a6f37978e51f608faba6209..4e632cd642c80fb66f52ef89ea5c90c37ed27d72 100644
+GIT binary patch
+delta 52
+zcmdnRx{sB6IWI340}zC<R&V6~#VGCUY!wq)oLW>I6I7a%niu1eTAW>yUl5a=pEFs8
+GX&wNHWDuqR
+
+delta 48
+zcmdnTx{H;2IWI340}$+f5WJE57o)hnvsFxJacWU<Oi*c3YF>;>YH@Z+e!*k~rg;Eu
+C8W11=
+
+diff --git a/backend/backend/db.sqlite3 b/backend/backend/db.sqlite3
+index f4a296bd27d3c903a3274a46737e51679a508f2e..38a20ec2ca72f9130b8f92828f6b9b55969e6613 100644
+GIT binary patch
+delta 4876
+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
+XA36NUgw=iy47}FoV2SwOJF)%)9!Pxs
+
+delta 938
+zcmah{&u<%55Pr|=uGc@u#VRov+Ej{Yi@S|?*RJh^ifkG?P8>UN96KZz<JucL8?Wtn
+zy|L3v9FltzTxpAhD1QJ&ffY(o#gPjj6h%U!EeBdDLP8`GLWl#UVlBiGG15pgqnYpf
+z=Dq2BXzp~V9na~D2%&!6|26OKWe#8b<n6ma_1X2J%j)TxoENn7{l^x~<N3+>!XY9-
+zGQa~kf_LB}P(jkp*B4;WMG~}Gk%dMsUtiX}-iuuX;l+8SS<cmkhO{ip%eAW8b&8;=
+z?)!rQ?CKs4di%(#Y|*Jm*hX*yU&AB#7~X?z9kveL?KeAw+u`b(Mi^bhW4q=`{)(L>
+zY#}&?hwv5LgFCRL_tv1hmD?mS)DYD4Tmb8)15=yVcnV#5N!|1q&UA0p6bi$MPJ>L^
+z>CRKoPBvb25^hksrX3yMcMUY<?yV8RZ5!*Fe(W*YY}(i_U!-YWppz&f7;qdqNc*t$
+zXUkufY4f|3Xu3@vlMCd4@tN@fQN%~+Ig0M`FRQT;e5BF%TgU#N)0lK#vK}D2F^4QE
+zvq*hPA@T`{Pr2>C*<-fPj5%A~`tYAGz+Y;-^8;+Ada3n*h^wDh@EiD5byvdY)H4$1
+zjMf9geRWF0W9sh}+^_CQ_<FBqSO1W(SKW~?rM_OpQ|gl%KC8-AtnKHDIBisE9^Y4=
+zkKjRFR?tA%?jdvE@G##0eg$9lYsS52=Wb()ay&w>=+qv4_ir2<__f4VhA%A@mTJvP
+zTP(I3#bQke=4&gfVX<7{8s%`X&0G;C+gULYnJ$TZYIcUMEQV)NquIu)Z*FbLH{Dj6
+z?FD8sA8jSpt_D|PW2u|toFH*hqm)$gEoQNDJ)6vA*|#!*8wD{C7czV(6|1Z%@`jKO
+zHWKv+9gT76Rk;vYSDLI+4aLUi*92yr8E4nCtl(b`Md*;M1jL1K`35ieW(pJW?EI*h
+zPM7$0B%K@$rc3O^c(6QIT@NKvqL>_F8eB9f4;9jp)RZD|&G=Q;Un-PmTdlHhvauMA
+z)w9{zxeGiSUtPR8QHs*@8P>;gG{ewrxSwH%0_>3Ae}&^19~ZQ1c+ccCzz_OSeFxrw
+W|9h|Axg#e+@Khgo44$+94gEJH$`t|t
+
+diff --git a/backend/backend/ingredients/__pycache__/__init__.cpython-311.pyc b/backend/backend/ingredients/__pycache__/__init__.cpython-311.pyc
+index 9d627a557f29450e7f43cfe8277065d8e366cb5c..68106bf90b9d0562e89600d4b498cd4b40e274d0 100644
+GIT binary patch
+delta 59
+zcmX@cxPy^<IWI340}zC<R!`(MRq=MViU}=FEh>%)Doskwi*ZRU&MwI>h)K@RiE&LV
+N3C>L{Dw$Xm0s!|I6I1{I
+
+delta 73
+zcmdnNc#M&IIWI340}%W?5j>IG)F{%~DkiizwWv5ID6upr#wE2lyClCLCMh*9CB`+e
+ZBse#*s6^K(F*zG3pc_;Q6rY$90swP}8Ib@0
+
+diff --git a/backend/backend/ingredients/__pycache__/admin.cpython-311.pyc b/backend/backend/ingredients/__pycache__/admin.cpython-311.pyc
+index 55d67d1514463be31db5313abbfce2b0590d90df..4cd67b69ae3e350f47f3f8d624f297db4ec854e2 100644
+GIT binary patch
+delta 59
+zcmey%_@0q_IWI340}zC<R!`(kRPk`OiU}=FEh>%)Doskwi*ZRU&MwI>h)K@RiE&LV
+N3C>L{Dw#Mh9sm~&6e0is
+
+delta 73
+zcmaFQ_?MA;IWI340}!O144%lHXcXpb6%$&VT2veplvtV*<C0pOU6NlAla!j5662a!
+Z5}cb@RHEyYn4Aq1&<!dDicg#n4*+>P8O#6x
+
+diff --git a/backend/backend/ingredients/__pycache__/apps.cpython-311.pyc b/backend/backend/ingredients/__pycache__/apps.cpython-311.pyc
+index f0c524b098f26518d0d5d344f3c04d289c9a2bd0..23bd031d604af675ad6967e878f0f54b3b104cf0 100644
+GIT binary patch
+delta 61
+zcmX@ivXzB<IWI340}zC<R&V5%W>j%^wu%WYPAw{q2`WuW&5LnKEzT~<FNjIb&xvtO
+PED6p{EGn5C!T1^g4?Yvu
+
+delta 75
+zcmdnWa+rmCIWI340}w1f6TFdIn$alK*(xTqIJKxaCMdBqC&neUIJ+djASNj_FD1q`
+bu_QP*v8Y7XDKR-4D4-iu3KXC0#rPTkfLs~I
+
+diff --git a/backend/backend/ingredients/__pycache__/models.cpython-311.pyc b/backend/backend/ingredients/__pycache__/models.cpython-311.pyc
+index f371edf14253867066f12d13297ce699e8a4d2c3..6f56bd658ce95f78761ce2afe4346012a9227e6a 100644
+GIT binary patch
+delta 62
+zcmeBUZ(!$M&dbZi00d#I)f>4B7*#x-tztrpQ;UjYf=ZK8^I}|5i?d7e3u2P<b7EW*
+QOM-I~i%K@HWqim802~SwHUIzs
+
+delta 76
+zcmZo*?_=j)&dbZi00b+}1aIUnU^EJMwu%WYPAw{q2}&%@iE&9S&MwI>h)GJ#ONnt!
+cED6p{EGp4;N=(iM3g`xv0>wAaXMD&A0Fs~@CIA2c
+
+diff --git a/backend/backend/ingredients/__pycache__/serializers.cpython-311.pyc b/backend/backend/ingredients/__pycache__/serializers.cpython-311.pyc
+index dae7ece08bfab1127f80d17e60c390896d86b676..50a2cb669efbd8c0fcbe6c123bbc16e7eadc7123 100644
+GIT binary patch
+delta 62
+zcmaFNc9o5LIWI340}zC<R&V64XH@ZXwu%WYPAw{q2`WuW&5LnKEzT~<FNjIb&xvtO
+QED6p{EGpT&hjBS007pF(#{d8T
+
+delta 76
+zcmcc0_Lz-(IWI340}!k{6TFeTp3x}A*(xTqIJKxaCMdBqC&neUIJ+djASNj_FD1q`
+cu_QP*v8Y7XDKR-4D4-iu3KZYGj&V670LWSzxBvhE
+
+diff --git a/backend/backend/ingredients/__pycache__/tests.cpython-311.pyc b/backend/backend/ingredients/__pycache__/tests.cpython-311.pyc
+index e649bfb60bcbe2ab408d47fc007dd34423501a97..f4fc2e5c842523c3867b25315ee1194c8422d61c 100644
+GIT binary patch
+literal 181
+zcmZ3^%ge<81SLY%sjoO07#@Q-Fu(|9d}aeOrZc241T$zd`mJOrVgm9%gCu`>I9tVp
+z7N-^!#{`uorRK%Bq!wqF<QK#w=jX(@CYA)}CKi>%Bqb(ir{<-=>CC+JqSTbk)Vz}7
+un3B}ul48Ar%3mBdx%nxjIjMF<tU!Z7Ru}UFi4V+-jEo-`U_=o!Pz(T)tuEaF
+
+literal 4963
+zcmc(iO>7&-6@X{CyX5F!5kpsWYMb&;WmXYoMX78jPGnn=6}t%S+Hw;RsuwHHN+G@c
+z>FiRi1*u4Zpzx(YQ53KaF2Iv2M-HGv4nF4C<5E~a!U6>f^yHfg_oP$bTawEkQL<AP
+z@M!cnJ2U%ccISQXz5QEPS37|+_|v=E<2FM6g%{N#R~j#FL*o%)gb6yy2nj*JwomtE
+z#DwU!MP16s3E6E+x<3<01O(zE(}c-i6Xw_CHIa}F_%D|PWq~^+N}uCpRB!@ZThzFr
+zLDO%Ts#!3g)p6z4^%>1DCslW#{d#tRYb>Q@&16N5`y*5?Uc3v9M?@nDfsurd315?h
+z$b29rCW4fi1k#TiN(7i6mJc{@*K~fCW15c38Of?fRE)0xxBcP|(EEs(bz@9egR2d%
+zXGLH>CNhc1kHr<=GD&+QMIWkaF3ZBQkNKYl8eh$dxJ-)Pi>kk8SxigSYtucn@>SYj
+z?OlU)HoUb2a*!soyLty9X<BU;;rRELHR#&#x*2`VHR|^5DJ6|-q&uo3%-6gcBXDkQ
+z@x7juXAHx7$}k=2j;fn`{?UjzXXN*~uBEbC#L(1;0o_kTN6M-h&7r?8s97^*K5#mi
+zW+ZtkZ>DltM@k#H>=Q7(`5e!v=5su^XeY-*aQsOfEzXhhIasAbH4KfLQ=mt8I?9%+
+zB*Ahxo{ZD`>CDV6<-K#G%H-{-D>GA{a6B3(kef?uNz-uTWUc_Z#0AadJ-CSENQS1*
+zJ7R(Bj>J?`btu=2d@gHf2C9re+52qrgW0>Vt}%OCE$FkKXvTdrm!F-}vTSxrHSc6p
+zZVtOcb87NF_EvvuZ^@W7(Y9mx2hI^}DM_xWrl!<pEDg1SA=Y{_nu_rah_A>$x<l5H
+z!BY2GyZh`zai{<I`lsJ3R?l6i52c;pkN)!EcJS0z@KkYf{q4<pD|o6D{KyV|^pNh*
+z&TZPiMf+F#?eOroi}uL15}mf`v_+@AvA-U*!$aHQ(XH@kDLiI}$2NaaqUUXT-lFH5
+zCyi`{M@r#Q8|(Npe~C`mbi%6E7qDB>n(g1gi38g>p;BJPE^}FbDmAhz{4gCd^Rqw;
+z9f9gD2m#(;Z}mO~{EFuVid6?)y8&9u0&9EP-bfDmqaqsPzOw8~d+V9Kwc)hq4H`AM
+zUZtfbGgP}9w0aabJ^|}!*5@+a8RvKd??lms0)3R@zoq5#8eftDY$Lz)&NZOpOZ`D)
+zfdfe_GN*&VNAm6*j;@9Gp$LL_j(!j*#;x*qKmf|F$-7+hBiMZmML&u#3YX!I3d84=
+zn?H9%UCZ(aj73F$9H*Q>F#y6q?*MS}lkn>tcPZh3bqWGm9aM&b-f3y<V6+ar=`CDk
+z4Fn)Y`)qo2n+|Nzf#Tvb`uChg2TJswP48LsUc=~bpAA|!b$2*p(~LzkO?)Ddk0$;+
+zQ5;)e{L@4!IBo~WTd{bhM6cTPsztBXFbl4J@%UGz@DL!m4j7Kubi}Gwej2vg8m~+L
+zC%je!(=$~-LtYkYC@ct1{f&m@hF}kngNz>lYzk>^0IpjH9;;Fy0DHmGL_@2Tv=`JG
+zci^IOkR}fg)`rGcE|5|*g>V;+_P8V8DJ-ab&;MQ|S;!lEz0+LH7Ig67EMnk@i_6|y
+zHFrMDG*eCK5Y{A>FBmm2%8{oI41N|CFGo9HiXBJ>kK(ilh$oT@gVSDHtqu&N2*9Y2
+zG0;eck=K%``BbtFk)`ohfTP8I_|}X+f&e~3C+yJRb||(LifvAR|D`pXwL-B{C})Rq
+z58GV;qMJv*JGR+lbzd%ZU$(n1L!^2Q5?1>kA1f}};n-%NL@(I%f>o`DU@-rNFo0MU
+zV3bLal|pWrekl^mq8mTJ!POG>6$#=;Yg3kfFcd=3Gk!Qeub{8n@U9MlM@VCoa0?5x
+z1g0a-hhdz@P>i6!Xu{8-7zKgx1UOpiy_<)m3mB><hBZv0UA53rBZQBk3Je~Om@k-3
+z!NWzw>EYTuhACy9=Q0YL;}}(=ayfwf4DWZNNCaDMD8Um!Vk*d#^Rt4xvwBVr$<Ovp
+zM&-u0ApTc4`cJHXZcTk|^?U)flE+oThP3%h3>=s2;H8%Zj=pVra*LiU(bG0PZPC+S
+zC|QNH?%nl;5*@ecxK*u(z;o{n!SgD>yqOqsK)U)0XtB1I(6qk<ni?CtIk##Fh#x+v
+zHB)P1#0gdstoN1pO=a?Cd}b;>!+#8>%HKz$Z44h}7RriVk%fJeF>V>Fufan38|KVb
+z@June`4cO6rWCwr2QRiV{_7=r!=^VZdc!mI!@gkPBL=E#_VFlnsG{I^s-igUijv8(
+zf{yJ@MZxdQ@(4eLZ)ym|IEoKYd<^0Van-o_D91F#73i{!IS^lYf4h=jzAWsLI@#-&
+z&tXSJ^vd$ZUE+!EfP8+Jc%o01FW_jiC@+sI$D?iVft^;f3%MA4*c#>Bq8ogo2|f`X
+z@HaVrznpCc8#~>vO^*K1>8m9dMhxDC2726F-hH;KFs1gqd-PKIZGFtAVE|kOF@6tX
+vR}=){pX7wqSa-;P)mV4PkkwdsNYrYqyV9Tl&%9r(e)w<f{ZES_cZ>f810@;{
+
+diff --git a/backend/backend/ingredients/__pycache__/urls.cpython-311.pyc b/backend/backend/ingredients/__pycache__/urls.cpython-311.pyc
+index dbdbc9c9b6c63599da1299e22083ca878d35147f..bfc1454ccc2241b8d533d4d5855b675861d568ca 100644
+GIT binary patch
+delta 61
+zcmZ3>I-iw$IWI340}zC<R&V6qz^LNxY!wq)oLW>I6I7a%niu1eTAW>yUl5a=pA+Mn
+PSQ4C@SX46kE#m<IAO94r
+
+delta 75
+zcmbQwx|WrDIWI340}u$PhHm8Ez-SceY!wq)oLW>I6O>q*6XTLvoL!P%5R;UemlETe
+bSQ4C@SX83xl$e|i6wnPS1&U9;&v*a;OA;Ah
+
+diff --git a/backend/backend/ingredients/__pycache__/views.cpython-311.pyc b/backend/backend/ingredients/__pycache__/views.cpython-311.pyc
+index 67533a43bc30c522132e0ee9a2acbe2475f7dddb..743a2ff1e464d5fff562ee2be2f56130425d47fa 100644
+GIT binary patch
+delta 62
+zcmX@gv7Li^IWI340}zC<R&V59!>HonY!wq)oLW>I6I7a%niu1eTAW>yUl5a=pA+Mn
+QSQ4C@SX8q4C1VT|06@kRnE(I)
+
+delta 76
+zcmdnaag>95IWI340}#Ad4c*AShS4a@*(xTqIJKxaCMdBqC&neUIJ+djASNj_FD1q`
+cu_QP*v8Y7XDKR-4D4-iu3KZXbn=yt70ID|{D*ylh
+
+diff --git a/backend/backend/ingredients/migrations/__pycache__/0001_initial.cpython-311.pyc b/backend/backend/ingredients/migrations/__pycache__/0001_initial.cpython-311.pyc
+index 1f2d14a8e0b8d4abf055000233d869716a41eb47..7e6161ef45644bbeaadf53095d9a3f0a7db62b62 100644
+GIT binary patch
+delta 62
+zcmey$@tlKuIWI340}zC<R&V5<&ZH9MY!wq)oLW>I6I7a%niu1eTAW>yUl5a=pA+Mn
+QSQ4C@SX8q43e!SH09Q{HCjbBd
+
+delta 76
+zcmaFP@s)#nIWI340}xzO2;Im%oyjP}*(xTqIJKxaCMdBqC&neUIJ+djASNj_FD1q`
+cu_QP*v8Y7XDKR-4D4-iu3KZXbjA<bw0KSJBn*aa+
+
+diff --git a/backend/backend/ingredients/migrations/__pycache__/__init__.cpython-311.pyc b/backend/backend/ingredients/migrations/__pycache__/__init__.cpython-311.pyc
+index 271247c258d6e74d549d9efcf4b634b0562bfbc6..d983e1789b5fbecbf1d11ebde11c56ac97b883b2 100644
+GIT binary patch
+delta 59
+zcmcb}c$krUIWI340}zC<R!`(MRS9#piU}=FEh>%)Doskwi*ZRU&MwI>h)K@RiE&LV
+N3C>L{Dw$Xm4*>nl6Mz5!
+
+delta 73
+zcmX@ic#)BNIWI340}!O144%ksYLwz^6%$&VT2veplvtV*<C0pOU6NlAla!j5662a!
+Z5}cb@RHEyYn4Aq1&<!dDicd_52LM@>87cq(
+
+diff --git a/backend/backend/user_api/__pycache__/__init__.cpython-311.pyc b/backend/backend/user_api/__pycache__/__init__.cpython-311.pyc
+index 45806ac1473470247823373ed675a1debfe32f07..c1ba5f631b94d291585abad09322f0ab282afca6 100644
+GIT binary patch
+delta 50
+zcmdnMxRsH6IWI340}zC<R!`(MmG*G9iU}=FEh>%)Doskwi*ZRU&MwI>h)K@RnHUxY
+E08<eUoB#j-
+
+delta 45
+zcmdnWxPg&-IWI340}$96giho(6?1mBiU}=FEh>%)N-WKZaY-%CF3B&L7##%w1^^9#
+
+diff --git a/backend/backend/user_api/__pycache__/admin.cpython-311.pyc b/backend/backend/user_api/__pycache__/admin.cpython-311.pyc
+index e7968b420b945b7fb736190b108018deba85478a..c3e3ef998eabc9bc24f3c43ed7072f5ade543250 100644
+GIT binary patch
+literal 530
+zcma)1F-rq66n^oVYbjL0;$)#Z-qIf+B8V2z!NKBE0&;CaNqd(&l5`MPe}K5SIw|76
+z@E2UAV7W<f>Q?C1$wYglb@K5g?|UzN@5_5Gm5N|ux^=_eO#ZS(7S5bZ?+tkX3KRtp
+zq9#H>*QgV$g-+8k9B3}cg}8|kFw}K3`C~p~%bDRP1n_FkZ~RN+{MAt00M8xU5gtmh
+zPeU%ocBZNFhjDzVm^8F_Dms!;&V)Yq3h6rS`l1un+L6$bx1?P#b;F3VKuK(iO}-GQ
+z+Wf&Tl;#xIEG<aZ;Yu_40#nn4S^a2_ST98``Yk5NF;hJq#iShtr0(lR=u1sne!Is6
+zUF5zIT=_94Ki{s!*R#UD@#+WcKyH|+b`KSqYvLe;CN7}e1a_7&g6(7#Bk+<{d;-2L
+fen9yh%6Df2s1Bi;Ky|d#JsCh{2$dv*EE&&l=l_Bi
+
+literal 231
+zcmZ3^%ge<81hxjDsZK!pF^B^LOi;#WAs}NqLkdF*V-7<uV-zDJLkd$cgC_G!kOED{
+zTdavGxtV!>noPI&QnC{B()0C_^YcoIGLwp!feKbKd<Loe<=|`;6Iz^FR2&nOSeg^#
+zl3JWyl3x(xnphH?n^;s5la!d8otl>dr%Qoq;}Z)qW5A~C6;%G>u*uC&Da}c>E8+ke
+a$Oy#6vOwYkGb1D84F-h^*iaE0Pz3;poIKnB
+
+diff --git a/backend/backend/user_api/__pycache__/apps.cpython-311.pyc b/backend/backend/user_api/__pycache__/apps.cpython-311.pyc
+index 338cedffb84c9cbf7084c95701e9a081c912d408..d36b9fc96373ae1d2f0593dba57e1c3126d91db5 100644
+GIT binary patch
+delta 52
+zcmZ3+vYLf^IWI340}zC<R&V4MVU%`pwu%WYPAw{q2`WuW&5LnKEzT~<FNjIb&zWq>
+G_z?hOX%GVd
+
+delta 47
+zcmZ3@vW$g$IWI340}$96gl^;(VHC4>wu%WYPAw{q2}&%@iE&9S&MwI>m~6%P5dai}
+B4d?&>
+
+diff --git a/backend/backend/user_api/__pycache__/models.cpython-311.pyc b/backend/backend/user_api/__pycache__/models.cpython-311.pyc
+index e3da014c4fc943816e15297f6f67ed8e10524263..b80fa587e04c6e60a9b206b5d0891f81cedb0d4a 100644
+GIT binary patch
+literal 3074
+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
+
+literal 2524
+zcmbtW&1)M+6rbJI*XYA`V#ki<kBAae6xnJh#n6%l)I@0mwQ23RhsCh0v{QTS)rV(S
+zX<}qhgQ2Drnp;9ohJu@5ANr?AL6Bvkr=D_i>YRM)d%M!wvYkWeXy?tF_ujnuc)xk0
+zKN5*3f%5syCH62t$luuMmQaT|S_S4A(TFA(q$J3KfV^mkB}tZCUNQoupd2iP<d8r_
+z@+Hv%+e8a8X-^_#AF5a6u&WD!F3f@~v<EZpL+xlIT4a%==^N~(1t(OhXv{Ey>;FPE
+z*^<floLW{_7*C7NK(1g~TrFB%l{4@S<0aiR^-9^C(;w;OV#lxBh@H;SBrwkiBeI|o
+zS=0iWxGl&Mv=X!dO@I{yoxWVPdTPG;qQ3<gjXc()e_U5}!R)sLU^_(<_Mo@#OP&aI
+z@r;Fd&Vuav_FX^N*3bCb66$2PyOq<1V0j?*dfk%h((dVX`}XxS^9uwl{V@1u!0bWY
+z_XTJN#}k-8zLG1aSV`55ly0Ut+o<WBY1!kET&k*?<_{IF^(Y{OLDw9PHu{}v)L5SL
+z3U~U;6<$&eeUmA!+6lTLcj6|ql&&WyV5$$<%K)^@_@2jMIZot6Sp!&@xcC&5<J_Ik
+zmN9VV@`743mhUoi-KtcV^QyI2Qn|HUP>buVtobdDR@AD#>|rfieeA@FoT(O5P_>!t
+z1w!_e4sVB92ht!m?K>obH1ii7Yz}2wbh=Hao6@vRFQND&S3J|A**48KrK}z8dmWv8
+z6`g!uYelEp(W%CiO%uN+e@;H1+DW!(s!dak>$VtrEe^gC2cLe`5+~Z?L{ppq*-z;w
+z=^r!OnMMZ2G%`mpKj}dy9)*j}17My3F3w=@45I!YIsr+5#(f`=TapH-Q~dt>5cnQk
+zam+<L2IN6Hz!TUR0pi4UQ!#5*#xW-R63Q<F@x#uC(Q2R*9N%*D+QrfH4F=GO0^~o3
+zkS1Q!(N}cz`PA;!7QNA?Hy~oe$;S1zICwrv{3^`xQkVz$M--*3mYAYAQAGjJ)ePk0
+zin38t4Nv3lnUCQR;*NB;$0HzcNe~$G7LbPjI~1u15bPyG5tO}$c#hF$5vpGhJy?!@
+z19FlkMZ%=Dt`44ogEJXK4!RcI2ZLx5*aUj9fyp1d;FNCBq=R5@#*(QPlA~I9MUZ1)
+z8}CJloX{fMMDEil<e;b%?!@*1B$rr~>u|jvE9>m>n~%XeJP^^6`baTYdBs|FLbbBK
+zQDbR=Pl2+NLJ&)M;KkFK7kT&gAT;3ikTqz%vPk$iaNy)auNj2K!~rP}e_=&|CrME@
+z`#Vd^b_5@wAwnBrmiPs3^00gS^XYy*0b-7C62FE7=XPkWW>xO#%+Q>$o1k>fiRLlg
+zx<YUL^v<fvy*{qT>04UNFU;rW^2)vY`LFLf{R{bTm+mj*?|S`37dlS3Qdna}%j9XC
+zErkTJ=^+f)$&n!T%q<`%2(x2jJG1TB*o#0jHq(mDv|}@k5t}A=hTAl`TljORNoQMh
+zwoPXnSM2!s&b@Yg{Ds(zXIk-0JDzD=wJ(o0Cheigr?(o{?AYke?N)3I{53`nML`^a
+zJb8|IE5r57r>R4=HMP7_$!Z1fkS03)Vx??xy^vLF)@rr@{}bHA%@M3l@**2A({sE<
+z90BWHEO+lI?E2?%9J%FP(A)eIP++9Z-+>%Tf*{yryxIHN<kM#FXOsKQi@w9apa3`X
+hJb9|TMd`Z})pSIFvpG+ieUr`9&9|s|cY)g7#J>h=K4$;`
+
+diff --git a/backend/backend/user_api/__pycache__/serializers.cpython-311.pyc b/backend/backend/user_api/__pycache__/serializers.cpython-311.pyc
+index 8a5e8acf452d17486dc69714b18339c3c9dff0b0..419e74d216cf26fd546e8b689fbb5877f6a1027a 100644
+GIT binary patch
+delta 52
+zcmbOyvRH(BIWI340}zC<RxjjclJ<7CiU}=FEh>%)Doskwi*ZRU&MwI>h)K@R*{sO)
+GmmL6aG7uL4
+
+delta 47
+zcmZ21GEaniIWI340}$96gf8S}5_5C5iU}=FEh>%)N-WKZaY-%CF3B(0tj6@09RMDI
+B4g3HA
+
+diff --git a/backend/backend/user_api/__pycache__/tests.cpython-311.pyc b/backend/backend/user_api/__pycache__/tests.cpython-311.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..af8017eff4f033653ec57dc8a21ce062a8885e38
+GIT binary patch
+literal 3391
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/backend/backend/user_api/__pycache__/urls.cpython-311.pyc b/backend/backend/user_api/__pycache__/urls.cpython-311.pyc
+index 462da2a42ac8908e70ad31b744267cc81b331ddf..5feb0099014ce039ebd5b30f759ec0c0c51129f9 100644
+GIT binary patch
+delta 250
+zcmdnSc9>m#IWI340}!kgu1>9EWMFs<;=lkWl<~Q1qq;347ZXD&V+v;~a~9`BKV50A
+zHLS~+85mXrF$AQuMscNZ2Qz5$OwMC;5~*TONzF+uN!7o_24VPVa!=mO7-Y>ATAW(s
+z0+zeQU0Re=kXTZZT9jA3lHoJRpkFS|RxuzY#W6vpNvU};E~&-YCHVz0$@w{x^_fh$
+zB!G&5E@dcwJUNePhw%*-js}+w$qBAkL{zSe=v)%fxhSG{MMQ5y#03_+i!63mSnNJ<
+Pv-2}GaD!lx7*Hnwj6Fl*
+
+delta 150
+zcmX@izKu<NIWI340}$96gr-_CGB7*_abSQ0%J}TGQQel2E1e~ZGleslL6d9pHby6A
+zKOoJ+6r{ynT9i|eSW=Q&lvlix;WJ3jFMDUJn9$<XqT-mK#L}D?m(=3ylKg_nGnq`e
+e#DMZZix`RzOuoUiL*N4^D?d{MHwYGq0EGc@FC*Xp
+
+diff --git a/backend/backend/user_api/__pycache__/validations.cpython-311.pyc b/backend/backend/user_api/__pycache__/validations.cpython-311.pyc
+index ef1acd4e5a955a69fba7dc18ead6ddcb67171807..c2693c494bc7d50d5e3ca06f7646be1743bb5999 100644
+GIT binary patch
+delta 53
+zcmaDR@LGU-IWI340}zC<R&V5%WtR4Kwu%WYPAw{q2`WuW&5LnKEzT~<FNjIb&)ICp
+HticKZlh6<p
+
+delta 48
+zcmaDY@JxVvIWI340}$96gl^=PWfpUDwu%WYPAw{q2}&%@iE&9S&MwI>*zC-#!3qFB
+CeGT~l
+
+diff --git a/backend/backend/user_api/__pycache__/views.cpython-311.pyc b/backend/backend/user_api/__pycache__/views.cpython-311.pyc
+index 99e721ebef8afe5d840d68db2b918b9c8dbbfdbd..a979f871bb156b86d998c62fea37e51648ad9896 100644
+GIT binary patch
+literal 4773
+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
+LYTg{9XAJl!9TfbL
+
+literal 3990
+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
+TXkDk%Zyvm1oVR`W%m)7lSteSg
+
+diff --git a/backend/backend/user_api/admin.py b/backend/backend/user_api/admin.py
+index 8c38f3f..b31fcb5 100644
+--- a/backend/backend/user_api/admin.py
++++ b/backend/backend/user_api/admin.py
+@@ -1,3 +1,8 @@
++# user_api/admin.py
++
+ from django.contrib import admin
++from .models import AppUser
++from ingredients.models import Ingredient
+ 
+-# Register your models here.
++admin.site.register(Ingredient)
++admin.site.register(AppUser)
+diff --git a/backend/backend/user_api/migrations/0002_alter_appuser_username.py b/backend/backend/user_api/migrations/0002_alter_appuser_username.py
+new file mode 100644
+index 0000000..065b7ce
+--- /dev/null
++++ b/backend/backend/user_api/migrations/0002_alter_appuser_username.py
+@@ -0,0 +1,18 @@
++# Generated by Django 4.2.4 on 2023-12-14 14:09
++
++from django.db import migrations, models
++
++
++class Migration(migrations.Migration):
++
++    dependencies = [
++        ('user_api', '0001_initial'),
++    ]
++
++    operations = [
++        migrations.AlterField(
++            model_name='appuser',
++            name='username',
++            field=models.CharField(default=None, max_length=50, null=True, unique=True),
++        ),
++    ]
+diff --git a/backend/backend/user_api/migrations/0003_appuser_is_active_appuser_is_staff.py b/backend/backend/user_api/migrations/0003_appuser_is_active_appuser_is_staff.py
+new file mode 100644
+index 0000000..a2d70e7
+--- /dev/null
++++ b/backend/backend/user_api/migrations/0003_appuser_is_active_appuser_is_staff.py
+@@ -0,0 +1,23 @@
++# Generated by Django 4.2.4 on 2023-12-14 14:17
++
++from django.db import migrations, models
++
++
++class Migration(migrations.Migration):
++
++    dependencies = [
++        ('user_api', '0002_alter_appuser_username'),
++    ]
++
++    operations = [
++        migrations.AddField(
++            model_name='appuser',
++            name='is_active',
++            field=models.BooleanField(default=True),
++        ),
++        migrations.AddField(
++            model_name='appuser',
++            name='is_staff',
++            field=models.BooleanField(default=False),
++        ),
++    ]
+diff --git a/backend/backend/user_api/migrations/__pycache__/0001_initial.cpython-311.pyc b/backend/backend/user_api/migrations/__pycache__/0001_initial.cpython-311.pyc
+index 45d503e781061c21b6f54395f249eb9a0a0e654d..9e1840107db542586d5c4e655062e20f0d90ece9 100644
+GIT binary patch
+delta 53
+zcmdlbuwQ_CIWI340}zC<R&V5PW0ekfwu%WYPAw{q2`WuW&5LnKEzT~<FNjIb&)K}3
+HbutqGl#CGu
+
+delta 48
+zcmdlluuFh@IWI340}$96gl^<+V-*W>wu%WYPAw{q2}&%@iE&9S&MwI>*t~{yG7|tl
+Co(}5(
+
+diff --git a/backend/backend/user_api/migrations/__pycache__/0002_alter_appuser_username.cpython-311.pyc b/backend/backend/user_api/migrations/__pycache__/0002_alter_appuser_username.cpython-311.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..b6a3a201fd92c6412224c42aee8241a3a859bbcc
+GIT binary patch
+literal 868
+zcmZuvy>HV%6u+|_$F@=lEF>ff6{-M{r3w`js*s?3NC-N#rI9R4$0c`3o%*Z(kU%UM
+z7#O>CV=N%Lu`u!{1SvywD^oXD?bL~PP922Go&CG_{NCOBz2Eus+?<7Ad}_Ss-!VeJ
+zrBjXCxpA@r#y(<*VIKw9!GYo^7%AvEV#)`^RE`H~wdnw?Z!^zPnYMwNwIdmBD#8l9
+zenK-Z3R9s65#xT^t#-<_Bm?Wo8-RVpk%Jj>6o&iQQ5D3sK}8BmGx<dy)FHJTOk*{s
+zGySlBpaBVZr{mE0mlT|3l(bA?zN+{DIU`SbLTK!XMyu7jN4(I>JnD-&jbj;_CWJKL
+zYe&m)^k!2Nb;f%%_cQ2>z9l{n``Nb8!rb?To`>FU&YLR4WT!;#gqXxy&*MI8n!+IE
+zXF`NU2&Cmc2fIPYZccrfDm}(y9x@(wJ)R~~TVXx&GoCz?ha|F3VXkh|sV}T3=I0uJ
+zMJG~%v)<|h_ce5oy6bs|hwc-e?qpHyb|c??O0$iCCYjrz-5n@1TPro(zjx+>F3W_<
+z+MrV@3Xy4&=u-SH(V<ug(nuYE;cON<GH(~Eaz!7$EG%R$e6+^Kjmg!UlgslHdvWj1
+z*k1f{|HtE>o1^uuk=_1fx5sw7sB5Nmi~vq06sm6P!xwTU^Hs4mxCfIBXxNXISf>=I
+z6lF^1noKKmuY+}FtV~sYm@I$`zdTB}016dj3>0y5gzjE^3cZ2#0$qeXYkcX}u?(F4
+ICtBA111l@$;Q#;t
+
+literal 0
+HcmV?d00001
+
+diff --git a/backend/backend/user_api/migrations/__pycache__/0003_appuser_is_active_appuser_is_staff.cpython-311.pyc b/backend/backend/user_api/migrations/__pycache__/0003_appuser_is_active_appuser_is_staff.cpython-311.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..f7e6c1f92727ad39c8999bf550533d1a523206fd
+GIT binary patch
+literal 980
+zcmah{zi-n(6uz?^$2JY37E(d!z(5gRs;bF^DiFVlgrEZj2FsFl&0Qj=j%{oQ39)1V
+ziLqN3<^rOBOe$rFZe?O~)lQvwcZmZeNZi@a@4b89z4yN7FSVM5V8xf;vwI3cKZH@P
+z%2YYq0_6}<L~)3E*u_1?RWMS}6GW8{h^h>C)e>|B+V`2|s#M!WPUWXKb`);)f=){E
+zAdWJw_hQPztW_e#*O(e-pFuf947r#hSE0CrT~$F$>y|}9YAQT>w>rfjsvTF3Fr<ff
+zvX1q?%UQUgI(LKdzZ*J=Yfuwfvbg!Y>;)P#`WZ`ok_5cIv9Yn~lQ5TdBK<-{q{n!b
+zB+|ppAoEEp58kqu4(3(L+N2-mjtUG3R(u()Nm*$JETr53M3$3wdwa(*x#7zY-{+R^
+z1Ee1^(3gDwO`n7UCM?Pl7Eu<p0+yv>CfvAB>9)8o)r7h9AdW*uBI)8*oUrL|zM(V0
+z;6?iIj`s?R&%77?Jr;S7Shk<XiPwrl?=i`DdnC=hJ<{5TJhN{}h4*{d9+1)idM0$t
+zdjHcSds|Q5r8*>*LMYis5QEt+bYwOQRk^AUo)s1{S3g-Jqds1_F<xFB+iM56M)ulQ
+zI<y-nc4K5WimGN>rwGKk5Oaw748ewW^TckB?B+b8cFEQUPsL8Jm38en8aHW|M4fn@
+z?nz=Los-H}M3{`d4%&sWHJQ%cv<{~DGqcwq3Ke4v-C$>kZZAHCzKrz(Es6tcbmiu$
+LI5_{usm%Ke-7x$o
+
+literal 0
+HcmV?d00001
+
+diff --git a/backend/backend/user_api/migrations/__pycache__/__init__.cpython-311.pyc b/backend/backend/user_api/migrations/__pycache__/__init__.cpython-311.pyc
+index 20f68a81bed3737ac21a6294872d57bf12681f45..9eda8e451e76dad80025fdc334ea3c9fae5371a2 100644
+GIT binary patch
+delta 50
+zcmdnZcz}_6IWI340}zC<R!`(Ml@4~ciU}=FEh>%)Doskwi*ZRU&MwI>h)K@RnHZJ|
+E09c$4$N&HU
+
+delta 45
+zcmX@WxSNrCIWI340}$96giho(74vhpiU}=FEh>%)N-WKZaY-%CF3B&L7@Z0L3g!*1
+
+diff --git a/backend/backend/user_api/models.py b/backend/backend/user_api/models.py
+index e860bb5..ebc2f65 100644
+--- a/backend/backend/user_api/models.py
++++ b/backend/backend/user_api/models.py
+@@ -3,34 +3,40 @@ from django.contrib.auth.base_user import BaseUserManager
+ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+ 
+ class AppUserManager(BaseUserManager):
+-	def create_user(self, email, password=None):
+-		if not email:
+-			raise ValueError('An email is required.')
+-		if not password:
+-			raise ValueError('A password is required.')
+-		email = self.normalize_email(email)
+-		user = self.model(email=email)
+-		user.set_password(password)
+-		user.save()
+-		return user
+-	def create_superuser(self, email, password=None):
+-		if not email:
+-			raise ValueError('An email is required.')
+-		if not password:
+-			raise ValueError('A password is required.')
+-		user = self.create_user(email, password)
+-		user.is_superuser = True
+-		user.save()
+-		return user
++    def create_user(self, email, password=None, username=None, **extra_fields):
++        if not email:
++            raise ValueError('An email is required.')
++        if not password:
++            raise ValueError('A password is required.')
++        email = self.normalize_email(email)
++        user = self.model(email=email, username=username, **extra_fields)
++        user.set_password(password)
++        user.save(using=self._db)
++        return user
+ 
++    def create_superuser(self, email, password=None, username=None, **extra_fields):
++        extra_fields.setdefault('is_staff', True)
++        extra_fields.setdefault('is_superuser', True)
++
++        if extra_fields.get('is_staff') is not True:
++            raise ValueError('Superuser must have is_staff=True.')
++        if extra_fields.get('is_superuser') is not True:
++            raise ValueError('Superuser must have is_superuser=True.')
++
++        return self.create_user(email, password, username=username, **extra_fields)
+ 
+ class AppUser(AbstractBaseUser, PermissionsMixin):
+-	user_id = models.AutoField(primary_key=True)
+-	email = models.EmailField(max_length=50, unique=True)
+-	username = models.CharField(max_length=50)
+-	USERNAME_FIELD = 'email'
+-	REQUIRED_FIELDS = ['username']
+-	objects = AppUserManager()
+-	def __str__(self):
+-		return self.username
+-	
+\ No newline at end of file
++    user_id = models.AutoField(primary_key=True)
++    email = models.EmailField(max_length=50, unique=True)
++    username = models.CharField(max_length=50, unique=True, null=True, default=None)
++    
++    is_active = models.BooleanField(default=True)
++    is_staff = models.BooleanField(default=False)
++
++    USERNAME_FIELD = 'email'
++    REQUIRED_FIELDS = ['username']
++
++    objects = AppUserManager()
++
++    def __str__(self):
++        return self.username
+diff --git a/backend/backend/user_api/tests.py b/backend/backend/user_api/tests.py
+index 7ce503c..5576e15 100644
+--- a/backend/backend/user_api/tests.py
++++ b/backend/backend/user_api/tests.py
+@@ -1,3 +1,49 @@
+ from django.test import TestCase
++from django.contrib.auth import get_user_model
++from django.core.exceptions import ObjectDoesNotExist
+ 
+-# Create your tests here.
++class AppUserModelTest(TestCase):
++    def setUp(self):
++        self.user = get_user_model().objects.create_user(
++            email='test@example.com',
++            password='testpassword',
++            username='testuser'
++        )
++
++    def test_create_user(self):
++        self.assertTrue(isinstance(self.user, get_user_model()))
++        self.assertEqual(self.user.email, 'test@example.com')
++        self.assertEqual(self.user.username, 'testuser')
++        self.assertTrue(self.user.check_password('testpassword'))
++
++    def test_create_superuser(self):
++        superuser = get_user_model().objects.create_superuser(
++            email='admin@example1.com',
++            password='adminpassword',
++            username='testuser1'
++        )
++        self.assertTrue(superuser.is_superuser)
++        self.assertTrue(superuser.is_staff)
++
++    def test_str_method(self):
++        self.assertEqual(str(self.user), 'testuser')
++
++    def test_delete_user(self):
++        user_to_delete = get_user_model().objects.create_user(
++            email='delete@example.com',
++            password='deletepassword',
++            username='deleteuser'
++        )
++        
++        # Retrieve the user_id using the appropriate attribute (e.g., user_id)
++        user_id = user_to_delete.user_id
++        
++        user_to_delete.delete()
++        
++        # Attempt to retrieve the user after deletion
++        try:
++            deleted_user = get_user_model().objects.get(user_id=user_id)
++        except ObjectDoesNotExist:
++            deleted_user = None
++        
++        self.assertIsNone(deleted_user, "User should not exist after deletion")
+diff --git a/backend/backend/user_api/urls.py b/backend/backend/user_api/urls.py
+index 2a835ae..495d1a3 100644
+--- a/backend/backend/user_api/urls.py
++++ b/backend/backend/user_api/urls.py
+@@ -6,4 +6,6 @@ urlpatterns = [
+ 	path('login', views.UserLogin.as_view(), name='login'),
+ 	path('logout', views.UserLogout.as_view(), name='logout'),
+ 	path('user', views.UserView.as_view(), name='user'),
++    path('delete/', views.UserDelete.as_view(), name='delete'), 
++
+ ]
+diff --git a/backend/backend/user_api/views.py b/backend/backend/user_api/views.py
+index 82223f5..def47d1 100644
+--- a/backend/backend/user_api/views.py
++++ b/backend/backend/user_api/views.py
+@@ -1,51 +1,63 @@
+ from django.contrib.auth import get_user_model, login, logout
++from django.shortcuts import get_object_or_404
+ from rest_framework.authentication import SessionAuthentication
+ from rest_framework.views import APIView
+ from rest_framework.response import Response
+-from .serializers import UserRegisterSerializer, UserLoginSerializer, UserSerializer
++from .serializers import (
++    UserRegisterSerializer,
++    UserLoginSerializer,
++    UserSerializer,
++)
+ from rest_framework import permissions, status
+ from .validations import custom_validation, validate_email, validate_password
+ 
+-
+ class UserRegister(APIView):
+-	permission_classes = (permissions.AllowAny,)
+-	def post(self, request):
+-		clean_data = custom_validation(request.data)
+-		serializer = UserRegisterSerializer(data=clean_data)
+-		if serializer.is_valid(raise_exception=True):
+-			user = serializer.create(clean_data)
+-			if user:
+-				return Response(serializer.data, status=status.HTTP_201_CREATED)
+-		return Response(status=status.HTTP_400_BAD_REQUEST)
++    permission_classes = (permissions.AllowAny,)
+ 
++    def post(self, request):
++        clean_data = custom_validation(request.data)
++        serializer = UserRegisterSerializer(data=clean_data)
++        if serializer.is_valid(raise_exception=True):
++            user = serializer.create(clean_data)
++            if user:
++                return Response(serializer.data, status=status.HTTP_201_CREATED)
++        return Response(status=status.HTTP_400_BAD_REQUEST)
+ 
+ class UserLogin(APIView):
+-	permission_classes = (permissions.AllowAny,)
+-	authentication_classes = (SessionAuthentication,)
+-	##
+-	def post(self, request):
+-		data = request.data
+-		assert validate_email(data)
+-		assert validate_password(data)
+-		serializer = UserLoginSerializer(data=data)
+-		if serializer.is_valid(raise_exception=True):
+-			user = serializer.check_user(data)
+-			login(request, user)
+-			return Response(serializer.data, status=status.HTTP_200_OK)
+-
++    permission_classes = (permissions.AllowAny,)
++    authentication_classes = (SessionAuthentication,)
++
++    def post(self, request):
++        data = request.data
++        assert validate_email(data)
++        assert validate_password(data)
++        serializer = UserLoginSerializer(data=data)
++        if serializer.is_valid(raise_exception=True):
++            user = serializer.check_user(data)
++            login(request, user)
++            return Response(serializer.data, status=status.HTTP_200_OK)
+ 
+ class UserLogout(APIView):
+-	permission_classes = (permissions.AllowAny,)
+-	authentication_classes = ()
+-	def post(self, request):
+-		logout(request)
+-		return Response(status=status.HTTP_200_OK)
++    permission_classes = (permissions.AllowAny,)
++    authentication_classes = ()
+ 
++    def post(self, request):
++        logout(request)
++        return Response(status=status.HTTP_200_OK)
+ 
+ class UserView(APIView):
+-	permission_classes = (permissions.IsAuthenticated,)
+-	authentication_classes = (SessionAuthentication,)
+-	##
+-	def get(self, request):
+-		serializer = UserSerializer(request.user)
+-		return Response({'user': serializer.data}, status=status.HTTP_200_OK)
++    permission_classes = (permissions.IsAuthenticated,)
++    authentication_classes = (SessionAuthentication,)
++
++    def get(self, request):
++        serializer = UserSerializer(request.user)
++        return Response({'user': serializer.data}, status=status.HTTP_200_OK)
++
++class UserDelete(APIView):
++    permission_classes = (permissions.IsAuthenticated,)
++    authentication_classes = (SessionAuthentication,)
++
++    def delete(self, request):
++        user = request.user
++        user.delete()
++        return Response({'message': 'User deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+-- 
+2.33.0.windows.2
+
