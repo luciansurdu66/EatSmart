@@ -6,6 +6,7 @@ import SignUpScreen from "./signupScreen";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MyFridge from "./myFridge";
 import axios from "axios";
+import baseURL from "../../assets/constants";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -20,10 +21,9 @@ const LoginScreen = () => {
     };
     console.log(user);
     axios
-      .post("http://10.0.2.2:5000/auth/login", user)
+      .post(baseURL+"/auth/login", user)
       .then((res) => {
-        console.log(res);
-        console.log(res.data);
+        console.log("Login successful")
         navigation.navigate("MyFridge");
       });
   };
