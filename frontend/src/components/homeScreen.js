@@ -30,7 +30,7 @@ const HomeScreen = ({ navigation }) => {
       </TouchableOpacity>
     </View>
     <View style={styles.textContainer}>
-      <Text style={{fontSize: 20, fontFamily: 'serif', color: 'white'}}>Already have an account?</Text>
+      <Text style={{fontSize: 15, fontFamily: 'serif', color: 'white'}}>Already have an account?</Text>
       <TouchableOpacity onPress={handleSignIn}>
         <Text style={styles.button}>Sign in</Text>
       </TouchableOpacity>
