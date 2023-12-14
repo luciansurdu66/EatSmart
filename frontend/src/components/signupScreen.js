@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TextInput, Button, Text } from "react-native";
+import { View, TextInput, Button, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import LoginScreen from "./loginScreen";
 import styles from "../styles/loginAndSignIn.style";
@@ -14,19 +14,16 @@ const SignUpScreen = () =>{
 
     const handleBackButton = () => {
     navigation.navigate('loginScreen');
-  };
+    };
 
 
     const handleSignUp = () => {
-        // Implementează logica de autentificare aici
-        console.SignUp("Inregistrare: ",fullName, email, password);
-        //Navigheza catre pagina de Autentificare
         navigation.navigate("LoginScreen");
     };
     return (
 
         <View style={styles.view}>
-          <Text style={styles.loginText}>SignUp</Text>
+          <Text style={styles.loginText}>Sign Up</Text>
           <Text style={styles.text}>Full Name</Text>
           <TextInput
             placeholder="Full name"
@@ -49,9 +46,15 @@ const SignUpScreen = () =>{
             secureTextEntry
             style={styles.textInput}
           />
-          <View style={styles.CircleShape1} 
+          <TouchableOpacity style={styles.container1} onPress={handleSignUp}>        
+            <Text style={styles.container1.loginBut}>Sing Up</Text>
+          </TouchableOpacity>
+          <View style={styles.CircleShape3}
           />
-          <Text title="Sign Up" onPress={handleSignUp}> Sign Up </Text>
+          <View style={styles.CircleShape1}
+          />
+          <View style={styles.CircleShape2}
+          />
         </View>
         
     )

@@ -42,12 +42,6 @@ const LoginScreen = () => {
           style={styles.textInput}
         />
         <Text style={styles.text}>Password</Text>
-        {/* <TextInput
-          placeholder="Your Password"
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-          style={styles.textInput}
-        /> */}
         <View>
           <TextInput
             placeholder="Your Password"
@@ -77,6 +71,12 @@ const LoginScreen = () => {
             <TouchableOpacity onPress={handleSignUp}>
             </TouchableOpacity>
         </View>
+        <View style={styles.CircleShape3}
+          />
+          <View style={styles.CircleShape1}
+          />
+          <View style={styles.CircleShape2}
+          />
       </View>
       
   )
