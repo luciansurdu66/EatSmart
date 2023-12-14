@@ -10,33 +10,8 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
-//     title: {
-//         fontSize: 32,
-//         color: 'white',
-//         fontWeight: 'bold',
-//         marginBottom: 20,
-//         fontFamily: 'BungeeInlineRegular'
-//     },
-//     button: {
-//       // backgroundColor: '#e74c3c',
-//       // paddingVertical: 15,
-//       // paddingHorizontal: 30,
-//       // borderRadius: 10,
-//         margin: 10,
-//         alignSelf: 'center',
-//         textAlign: 'center',
-//         color: 'white',
-//         fontSize: 25,
-//         fontFamily: 'serif'
-//     },
-//     buttonText: {
-//       color: 'white',
-//       fontSize: 18,
-//       fontWeight: 'bold',
-//     },
     welcomeContainer: {
       alignItems: 'right',
-      //justifyContent: 'center',
     },
     welcomeLine: {
       width: 311,

@@ -3,6 +3,7 @@ import { View, TextInput, Button, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import LoginScreen from "./loginScreen";
 import styles from "../styles/loginAndSignIn.style";
+import axios from "axios";
 
 
 const SignUpScreen = () =>{
@@ -18,7 +19,18 @@ const SignUpScreen = () =>{
 
 
     const handleSignUp = () => {
-        navigation.navigate("LoginScreen");
+        const user = {
+          fullName: fullName,
+          email: email,
+          password: password,
+        };
+        console.log(user);
+        axios
+          .post("http://localhost:5000/auth/register", user)
+          .then((res) => {
+            console.log(res);
+            console.log(res.data);
+          });
     };
     return (
 
