@@ -45,7 +45,7 @@ export default class AddIngredient extends Component {
 
     render() {
         return (
-        <ImageBackground source={require('../../images/addingr.jpg')} style={styles.wrapper}>
+        <ImageBackground source={require('../../images/ingr.jpeg')} style={styles.wrapper}>
                 <Text style={styles.header}>Add New Ingredient</Text>
                 <TextInput
                     style={styles.textInput}
