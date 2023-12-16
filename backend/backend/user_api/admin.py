@@ -1,3 +1,8 @@
-from django.contrib import admin
+# user_api/admin.py
 
-# Register your models here.
+from django.contrib import admin
+from .models import AppUser
+from ingredients.models import Ingredient
+
+admin.site.register(Ingredient)
+admin.site.register(AppUser)

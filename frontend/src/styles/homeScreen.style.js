@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
-          bottom: 100,
+          bottom: 120,
       },
       button: {
         alignItems: 'center',
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignSelf: 'center',    
         color: 'white',
-        fontSize: 19,
+        fontSize: 15,
         textShadowColor: 'transparent',
         fontFamily: 'serif',
         textDecorationLine: 'underline'

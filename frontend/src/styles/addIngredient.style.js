@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20
     },
     titleText: {
-        fontSize: 20,
+        fontSize: 30,
         fontWeight: 'bold',
         color: 'black',
         textAlign: 'center',
