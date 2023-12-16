@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { View, TextInput, Button, Text, TouchableOpacity } from "react-native";
+import { View, TextInput, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import LoginScreen from "./loginScreen";
 import styles from "../styles/loginAndSignIn.style";
-
+import axios from "axios";
+import baseURL from "../../assets/constants";
 
 const SignUpScreen = () =>{
     const [fullName, setFullName] = useState("");
@@ -12,13 +12,20 @@ const SignUpScreen = () =>{
 
     const navigation = useNavigation();
 
-    const handleBackButton = () => {
-    navigation.navigate('loginScreen');
-    };
-
 
     const handleSignUp = () => {
-        navigation.navigate("LoginScreen");
+        const user = {
+          fullName: fullName,
+          email: email,
+          password: password,
+        };
+        console.log(user);
+        axios
+          .post(baseURL+"/auth/register", user)
+          .then((res) => {
+            console.log("Sign up successful")
+            navigation.navigate("LoginScreen");
+          });
     };
     return (
 
@@ -47,7 +54,7 @@ const SignUpScreen = () =>{
             style={styles.textInput}
           />
           <TouchableOpacity style={styles.container1} onPress={handleSignUp}>        
-            <Text style={styles.container1.loginBut}>Sing Up</Text>
+            <Text style={styles.container1.loginBut}>Sign Up</Text>
           </TouchableOpacity>
           <View style={styles.CircleShape3}
           />
