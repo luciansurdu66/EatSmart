@@ -12,14 +12,12 @@ const sequelize = new Sequelize(
     }
 );
 
-
 const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-
 db.User = require('./userModel')(sequelize, Sequelize);
 db.Ingredient = require('./ingredientModel')(sequelize, Sequelize);
+db.Recipe = require('./recipeModel')(sequelize, Sequelize);
 module.exports = db;
-

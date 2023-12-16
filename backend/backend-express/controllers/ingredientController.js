@@ -2,6 +2,7 @@ const db = require('../models/index');
 
 
 exports.addIngredient = async (req, res) => {
+    console.log(req.body);
     const name = req.body.name;
     const quantity = req.body.quantity;
     const unit = req.body.unit;
