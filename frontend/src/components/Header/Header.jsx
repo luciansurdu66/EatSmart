@@ -16,10 +16,10 @@ const Header = ({showBackButton = true }) => {
   };
 
   return (
-    <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 20, marginTop: 10, alignItems: 'start' }}>
+    <View style={{ backgroundColor:'#14471E', flexDirection: 'row', justifyContent: 'space-between', padding: 20, paddingTop:30, alignItems: 'start' }}>
     
       <TouchableOpacity onPress={() => handleNavigate('RecipeSearchScreen')}>
-        <Text style={{fontSize: 25, fontWeight: 'bold'}}>EatSmart</Text>
+        <Text style={{fontSize: 25, fontWeight: 'bold', color:'white'}}>EatSmart</Text>
       </TouchableOpacity>
       <View style={{ flexDirection: 'row' ,alignItems: 'center' }}>
 
