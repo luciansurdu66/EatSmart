@@ -16,7 +16,6 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="RecipePage" component={RecipePage} options={{ headerShown: false }}/>
         <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
         <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={{ headerShown: false }}/>
@@ -24,6 +23,7 @@ export default function App() {
         <Stack.Screen name="AddIngredient" component={AddIngredient} options={{ headerShown: false }}/>
         <Stack.Screen name="RecipeSearchScreen" component={RecipeSearchScreen}  options={{ headerShown: false }} />
         <Stack.Screen name="MyFridge" component={MyFridge} />
+        <Stack.Screen name="RecipePage" component={RecipePage} options={{ headerShown: false }}/>
       </Stack.Navigator> 
     </NavigationContainer>
   );
