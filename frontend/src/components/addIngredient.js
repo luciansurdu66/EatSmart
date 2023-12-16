@@ -1,49 +1,46 @@
-import React, { Component } from "react";
 import axios from "axios";
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button, ActivityIndicator, ImageBackground } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+import { Text, StyleSheet, TouchableOpacity, TextInput, ImageBackground } from "react-native";
+import baseURL from "../../assets/constants";
 import { SelectList } from "react-native-dropdown-select-list";
+import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
+const AddIngredient = () => {
+    const [ingredientName, setIngredientName] = useState("");
+    const [ingredientQuantity, setIngredientQuantity] = useState("");
+    const [ingredientUnit, setIngredientUnit] = useState("");
+    const [ingredientDescription, setIngredientDescription] = useState("");
 
-export default class AddIngredient extends Component {
+    const navigation = useNavigation();
 
-    constructor(props) {
-        super(props);
+    data = 
+    [
+        {key:'1', value:'kg'},
+        {key:'2', value:'g'},
+        {key:'3', value:'mg'},
+        {key:'4', value:'l'},
+        {key:'5', value:'ml'},
+    ]
 
-        this.state = {
-            ingredient_name: "",
-            ingredient_quantity: "",
-            ingredient_unit: null,
-            ingredient_description: "",
+    const addIngredient = () => {
+        const ingredient = {
+            name: ingredientName,
+            quantity: ingredientQuantity,
+            unit: ingredientUnit,
+            description: ingredientDescription,
         };
-    }
-
-    onChangeIngredient = (field, value) => {
-        this.setState({[field]: value});
-    };
-    
-
-    onSubmit = () => {
-        const newIngredient = {
-            ingredientName: this.state.ingredientName,
-            ingredientQuantity: this.state.ingredientQuantity,
-            ingredientUnit: this.state.ingredientUnit,
-            ingredientDescription: this.state.ingredientDescription,
-        };
-
-        // axios.post("http://localhost:5000/ingredients/add", newIngredient)
-        //     .then((res) => console.log(res.data));
-
-        this.setState({
-            ingredient_name: "",
-            ingredient_quantity: "",
-            ingredient_unit: null,
-            ingredient_description: "",
-
+        console.log(ingredient);
+        axios
+        .post(baseURL+"/ingredient/add", ingredient)
+        .then((res) => {
+            console.log(res.data);
+            navigation.navigate("MyFridge", { refresh: Date.now() });
+        })
+        .catch((error) => {
+            console.error('Failed to add ingredient',error);
         });
     };
 
-    render() {
         return (
         <ImageBackground source={require('../../images/addingr.jpg')} style={styles.wrapper}>
                 <Text style={styles.header}>Add New Ingredient</Text>
@@ -51,47 +48,44 @@ export default class AddIngredient extends Component {
                     style={styles.textInput}
                     placeholder="Ingredient Name"
                     placeholderTextColor= 'gray'
-                    value={this.state.ingredient_name}
-                    onChangeText={(text) => this.onChangeIngredient('ingredient_name', text)}
+                    value={ingredientName}
+                    onChangeText={(text) => setIngredientName(text)}
 
                 />
                 <TextInput
                     style={styles.textInput}
                     placeholder="Ingredient Quantity"
                     placeholderTextColor= 'gray'
-                    value={this.state.ingredient_quantity}
-                    onChangeText={(text) => this.onChangeIngredient('ingredient_quantity', text)}
+                    value={ingredientQuantity}
+                    onChangeText={(text) => setIngredientQuantity(text)}
                     keyboardType="numeric"
                 />
-                <SelectList data={[{key:'1', value:'kg'},
-                                {key:'2', value:'g'},
-                                {key:'3', value:'mg'},
-                                {key:'4', value:'l'},
-                                {key:'5', value:'ml'},
-                                ]}
-                                onSelect={(value) =>{console.log(value)
-                                    this.onChangeIngredient('ingredient_unit', value)}} 
-                                    
-                                boxStyles={{width: 353, marginBottom: 15, borderColor: '#68904D',}}>
+                <SelectList 
+                    setSelected={(val) => setIngredientUnit(val)}
+                    data={data}
+                    save="value"
+                    boxStyles={{width: 353, marginBottom: 15, borderColor: '#68904D',}}
+                    >
                 </ SelectList>
                 <TextInput
                     style={[styles.textInput, styles.multilineInput]}
                     placeholder="Ingredient Description"
                     placeholderTextColor= 'gray'
-                    value={this.state.ingredient_description}
-                    onChangeText={(text) => this.onChangeIngredient('ingredient_description', text)}
+                    value={ingredientDescription}
+                    onChangeText={(text) => setIngredientDescription(text)}
                     multiline
                 />
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={this.onSubmit}
+                    onPress={addIngredient}
                 >
                     <Text style={styles.buttonText}>Add Ingredient</Text>
                 </TouchableOpacity>
         </ImageBackground>
         );
     }
-}
+
+export default AddIngredient;
 
 const styles = StyleSheet.create({
     wrapper: {

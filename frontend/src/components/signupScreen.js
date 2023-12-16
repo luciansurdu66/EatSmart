@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TextInput, Button, Text, TouchableOpacity } from "react-native";
+import { View, TextInput, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "../styles/loginAndSignIn.style";
 import axios from "axios";
@@ -12,9 +12,6 @@ const SignUpScreen = () =>{
 
     const navigation = useNavigation();
 
-    const handleBackButton = () => {
-    navigation.navigate('loginScreen');
-    };
 
     const handleSignUp = () => {
         const user = {

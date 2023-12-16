@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
       width: 311,
       top: 130,
       left: 10,
-      fontFamily: "Tahoma-Bold",
       fontWeight: 'bold',
       color: '#111719',
       fontSize: 60,

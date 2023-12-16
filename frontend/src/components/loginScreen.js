@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { View, TextInput, Text, Touchable, TouchableOpacity } from "react-native";
+import { View, TextInput, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "../styles/loginAndSignIn.style";
-import SignUpScreen from "./signupScreen";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import MyFridge from "./myFridge";
 import axios from "axios";
 import baseURL from "../../assets/constants";
 
@@ -12,6 +10,7 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+
   const navigation = useNavigation();
 
   const handleLogin = () => {

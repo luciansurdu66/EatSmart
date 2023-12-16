@@ -1,18 +1,16 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions, ScrollView, Text } from 'react-native';
-import AddIngredient from './addIngredient';
 import axios from 'axios';
 import baseURL from "../../assets/constants";
 import { useState, useEffect } from 'react';
-
-const SquareComponent = () => {
-  return <View style={styles.square} />;
-};
+import { useRoute } from '@react-navigation/native';
 
 const GridComponent = () => {
   const screenWidth = Dimensions.get('window').width;
   const itemWidth = (screenWidth - 30) / 2; // Subtract padding and margin
   const [items, setItems] = useState([]); // Initialize items as an empty array
+
+  const route = useRoute();
 
   useEffect(() => {
     axios.get(baseURL+"/ingredient/")
@@ -23,7 +21,7 @@ const GridComponent = () => {
       .catch((error) => {
         console.error('Failed to fetch items:', error);
       });
-  }, []);
+  }, [route.params?.refresh]);
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -31,8 +29,7 @@ const GridComponent = () => {
         {items.map((item) => (
           <View style={styles.gridItem} key={item.id}>
           <Text style={styles.itemName}>{item.name}</Text>
-          <Text>Quantity: {item.quantity}</Text>
-          <Text>Unit: {item.unit}</Text>
+          <Text>{item.quantity} {item.unit}</Text>
           <Text>Description: {item.description}</Text>
         </View>
         ))}
@@ -55,10 +52,8 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
     borderRadius: 10,
 
-    // Shadow properties for Android
     elevation: 2,
 
-    // Shadow properties for iOS
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
