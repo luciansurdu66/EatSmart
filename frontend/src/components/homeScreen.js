@@ -1,11 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import AddIngredient from './addIngredient';
+import { View, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import styles from '../styles/homeScreen.style';
 import LoginScreen from './loginScreen';
-import SignUpScreen from './signupScreen';
 import { LinearGradient } from 'expo-linear-gradient'; 
 
 const HomeScreen = ({ navigation }) => {

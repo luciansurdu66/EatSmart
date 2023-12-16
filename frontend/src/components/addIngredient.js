@@ -41,7 +41,7 @@ const AddIngredient = () => {
         });
     };
 
-        return (
+    return (
         <ImageBackground source={require('../../images/addingr.jpg')} style={styles.wrapper}>
                 <Text style={styles.header}>Add New Ingredient</Text>
                 <TextInput

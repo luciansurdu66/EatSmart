@@ -39,7 +39,6 @@ const LoginScreen = () => {
   }
 
   return (
-
       <View>
         <Text style={styles.loginText}>Login</Text>
         <Text style={styles.text}>E-mail</Text>
@@ -88,10 +87,7 @@ const LoginScreen = () => {
           <View style={styles.CircleShape2}
           />
       </View>
-      
-  )
-
-};
+  )};
 
 export default LoginScreen;
 

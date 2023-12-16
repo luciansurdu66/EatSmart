@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
 import styles from '../styles/myFridge.style';
 import GridComponent from './gridComponent'; 
 import Svg, { Path } from 'react-native-svg';
@@ -32,7 +31,5 @@ const MyFridge = () => {
     </View>
   );
 };
-
-
 
 export default MyFridge;

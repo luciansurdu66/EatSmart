@@ -6,8 +6,6 @@ import { useState, useEffect } from 'react';
 import { useRoute } from '@react-navigation/native';
 
 const GridComponent = () => {
-  const screenWidth = Dimensions.get('window').width;
-  const itemWidth = (screenWidth - 30) / 2; // Subtract padding and margin
   const [items, setItems] = useState([]); // Initialize items as an empty array
 
   const route = useRoute();
