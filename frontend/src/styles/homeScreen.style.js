@@ -10,39 +10,13 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
-//     title: {
-//         fontSize: 32,
-//         color: 'white',
-//         fontWeight: 'bold',
-//         marginBottom: 20,
-//         fontFamily: 'BungeeInlineRegular'
-//     },
-//     button: {
-//       // backgroundColor: '#e74c3c',
-//       // paddingVertical: 15,
-//       // paddingHorizontal: 30,
-//       // borderRadius: 10,
-//         margin: 10,
-//         alignSelf: 'center',
-//         textAlign: 'center',
-//         color: 'white',
-//         fontSize: 25,
-//         fontFamily: 'serif'
-//     },
-//     buttonText: {
-//       color: 'white',
-//       fontSize: 18,
-//       fontWeight: 'bold',
-//     },
     welcomeContainer: {
       alignItems: 'right',
-      //justifyContent: 'center',
     },
     welcomeLine: {
       width: 311,
       top: 130,
       left: 10,
-      fontFamily: "Tahoma-Bold",
       fontWeight: 'bold',
       color: '#111719',
       fontSize: 60,
@@ -69,7 +43,7 @@ const styles = StyleSheet.create({
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
-          bottom: 100,
+          bottom: 120,
       },
       button: {
         alignItems: 'center',
@@ -78,7 +52,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignSelf: 'center',    
         color: 'white',
-        fontSize: 19,
+        fontSize: 15,
         textShadowColor: 'transparent',
         fontFamily: 'serif',
         textDecorationLine: 'underline'

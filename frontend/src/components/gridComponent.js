@@ -1,52 +1,37 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions, ScrollView, Text } from 'react-native';
-import AddIngredient from './addIngredient';
-
-const SquareComponent = () => {
-  return <View style={styles.square} />;
-};
+import axios from 'axios';
+import baseURL from "../../assets/constants";
+import { useState, useEffect } from 'react';
+import { useRoute } from '@react-navigation/native';
 
 const GridComponent = () => {
-  const screenWidth = Dimensions.get('window').width;
-  const itemWidth = (screenWidth - 30) / 2; // Subtract padding and margin
-  /* const items = [
-    { id: 1, name: 'Item 1', quantity: 5, expirationDate: '2023-12-31' },
-    { id: 2, name: 'Item 2', quantity: 3, expirationDate: '2023-11-30' },
-    { id: 3, name: 'Item 3', quantity: 2, expirationDate: '2023-12-15' },
-    { id: 4, name: 'Item 4', quantity: 1, expirationDate: '2024-01-15' },
-    // ... 16 more items ...
-    { id: 17, name: 'Item 17', quantity: 3, expirationDate: '2023-12-20' },
-    { id: 18, name: 'Item 18', quantity: 2, expirationDate: '2023-12-25' },
-    { id: 19, name: 'Item 19', quantity: 1, expirationDate: '2024-01-01' },
-    { id: 20, name: 'Item 20', quantity: 4, expirationDate: '2023-12-10' },
-  ]; */
-  
-  const generateItems = () => {
-    const items = [];
-    for (let i = 1; i <= 20; i++) {
-      items.push({
-        id: i,
-        name: `Item ${i}`,
-        quantity: Math.floor(Math.random() * 10) + 1, // Random quantity for demonstration
-        expirationDate: '2023-12-31', // Replace with actual expiration dates
-      });
-    }
-    return items;
-  };
+  const [items, setItems] = useState([]); // Initialize items as an empty array
 
-  const items = generateItems();
+  const route = useRoute();
+
+  useEffect(() => {
+    axios.get(baseURL+"/ingredient/")
+      .then((res) => {
+        console.log(res.data.ingredients);
+        setItems(res.data.ingredients);
+      })
+      .catch((error) => {
+        console.error('Failed to fetch items:', error);
+      });
+  }, [route.params?.refresh]);
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <View style={styles.gridContainer}>
-            {items.map((item) => (
-                <View style={styles.gridItem} key={item.id}>
-                    <Text style={styles.itemName}>{item.name}</Text>
-                    <Text>Quantity: {item.quantity}</Text>
-                    <Text>Expires: {item.expirationDate}</Text>
-                </View>
-            ))}
+      <View style={styles.gridContainer}>
+        {items.map((item) => (
+          <View style={styles.gridItem} key={item.id}>
+          <Text style={styles.itemName}>{item.name}</Text>
+          <Text>{item.quantity} {item.unit}</Text>
+          <Text>Description: {item.description}</Text>
         </View>
+        ))}
+      </View>
     </ScrollView>
   );
 };
@@ -65,10 +50,8 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
     borderRadius: 10,
 
-    // Shadow properties for Android
     elevation: 2,
 
-    // Shadow properties for iOS
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,

@@ -1,12 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import AddIngredient from './addIngredient';
+import { View, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import styles from '../styles/homeScreen.style';
 import LoginScreen from './loginScreen';
-import SignUpScreen from './signupScreen';
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient'; 
 
 const HomeScreen = ({ navigation }) => {
   const handleSignIn = () => {
@@ -30,7 +26,7 @@ const HomeScreen = ({ navigation }) => {
       </TouchableOpacity>
     </View>
     <View style={styles.textContainer}>
-      <Text style={{fontSize: 20, fontFamily: 'serif', color: 'white'}}>Already have an account?</Text>
+      <Text style={{fontSize: 15, fontFamily: 'serif', color: 'white'}}>Already have an account?</Text>
       <TouchableOpacity onPress={handleSignIn}>
         <Text style={styles.button}>Sign in</Text>
       </TouchableOpacity>

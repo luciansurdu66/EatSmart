@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     },
     loginText:
     {
-        fontSize: 50, paddingTop: 100, paddingLeft: 30, fontFamily: 'serif' },
+        fontSize: 50, paddingTop: 110, paddingLeft: 30, fontFamily: 'serif' },
 
     container: {
         flexDirection: 'row',
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
     CircleShape2: {
         width: 150,
-        height: 150,
+        height: 140,
         borderRadius: 150 / 2,
         backgroundColor: '#DA6A00',
         top: -920,
@@ -75,22 +75,22 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textShadowColor: 'transparent',
         fontFamily: 'serif',
-
-        textShadowColor: 'transparent',
+        textDecorationLine: 'underline'
+       // textShadowColor: 'transparent',
     }, 
     container1: {
         backgroundColor: '#DA6A00',
-        borderRadius: 50,
-        padding: 10,
+        borderRadius: 40,
+        padding: 7,
         width: '50%',
         alignSelf: 'center',
         alignItems: 'center',  // Centrare orizontală
         loginBut: {
-            margin: 10,
+            margin: 8,
             alignSelf: 'center',
             textAlign: 'center',
             color: 'white',
-            fontSize: 25,
+            fontSize: 20,
             fontFamily: 'serif'
         },
     },
