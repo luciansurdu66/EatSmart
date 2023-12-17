@@ -17,12 +17,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="RecipeSearch" component={RecipeSearch}  options={{ headerShown: false }} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
         <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="RecipeSearchScreen" component={RecipeSearch} options={({ route }) => ({ header: () => <Header title={route.name} /> })} />
+        <Stack.Screen name="RecipeSearch" component={RecipeSearch} options={({ route }) => ({ header: () => <Header title={route.name} /> })} />
         <Stack.Screen name="AddIngredient" component={AddIngredient} options={({ route }) => ({ header: () => <Header title={route.name} /> })} />
         <Stack.Screen name="MyFridge" component={MyFridge} options={({ route }) => ({ header: () => <Header title={route.name} /> })} />
         <Stack.Screen name="RecipePage" component={RecipePage} options={({ route }) => ({ header: () => <Header title={route.name} /> })}/>
