@@ -3,6 +3,7 @@ import { View, TextInput, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "../styles/loginAndSignIn.style";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import RecipeSearch from "./recipeSearch";
 import axios from "axios";
 import baseURL from "../../assets/constants";
 
@@ -23,7 +24,7 @@ const LoginScreen = () => {
       .post(baseURL+"/auth/login", user)
       .then((res) => {
         console.log("Login successful")
-        navigation.navigate("MyFridge");
+        navigation.navigate("RecipeSearch");
       });
   };
   const handleResetPassword = () => {

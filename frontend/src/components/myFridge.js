@@ -4,6 +4,7 @@ import styles from '../styles/myFridge.style';
 import GridComponent from './gridComponent'; 
 import Svg, { Path } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
+import Header from './Header/Header';
 
 const MyFridge = () => {
   const navigation = useNavigation();
