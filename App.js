@@ -20,7 +20,7 @@ export default function App() {
         <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="RecipeSearchScreen" component={RecipeSearchScreen} options={({ route }) => ({ header: () => <Header title={route.name} /> })} />
+        <Stack.Screen name="RecipeSearchScreen" component={RecipeSearch} options={({ route }) => ({ header: () => <Header title={route.name} /> })} />
         <Stack.Screen name="AddIngredient" component={AddIngredient} options={({ route }) => ({ header: () => <Header title={route.name} /> })} />
         <Stack.Screen name="MyFridge" component={MyFridge} options={({ route }) => ({ header: () => <Header title={route.name} /> })} />
       </Stack.Navigator> 

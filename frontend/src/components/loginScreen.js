@@ -6,6 +6,7 @@ import styles from "../styles/loginAndSignIn.style";
 import SignUpScreen from "./signupScreen";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MyFridge from "./myFridge";
+import RecipeSearch from "./recipeSearch";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ const LoginScreen = () => {
 
   const handleLogin = () => {
     console.log("Autentificare: ", email, password);
-    navigation.navigate("MyFridge");
+    navigation.navigate("RecipeSearch");
   };
   const handleResetPassword = () => {
     navigation.navigate("ResetPasswordScreen");

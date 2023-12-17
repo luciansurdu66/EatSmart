@@ -18,15 +18,15 @@ const Header = ({showBackButton = true }) => {
   return (
     <View style={{ backgroundColor:'#14471E', flexDirection: 'row', justifyContent: 'space-between', padding: 20, paddingTop:30, alignItems: 'start' }}>
     
-      <TouchableOpacity onPress={() => handleNavigate('RecipeSearchScreen')}>
+      <TouchableOpacity onPress={() => handleNavigate('RecipeSearch')}>
         <Text style={{fontSize: 25, fontWeight: 'bold', color:'white'}}>EatSmart</Text>
       </TouchableOpacity>
       <View style={{ flexDirection: 'row' ,alignItems: 'center' }}>
 
-        <TouchableOpacity onPress={() => handleNavigate('RecipeSearchScreen')}
+        <TouchableOpacity onPress={() => handleNavigate('RecipeSearch')}
         style={[
           styles.button,
-          route.name === 'RecipeSearchScreen' && styles.activeButton,
+          route.name === 'RecipeSearch' && styles.activeButton,
         ]}>
           <Text style={styles.navbarItem}>Dashboard</Text>
         </TouchableOpacity>
@@ -49,10 +49,12 @@ const styles = StyleSheet.create({
     marginRight: 20,
     borderBottomWidth: 0,
     borderColor: 'transparent',
+    color:'white',
   },
   activeButton: {
     borderBottomWidth: 2,
-    borderColor: 'red',
+    borderColor: 'white',
+    color:'white'
   },
 });
 
