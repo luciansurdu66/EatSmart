@@ -25,7 +25,7 @@ const RecipeSearch = () => {
   return (
     <NavigationContainer independent={true}>
       <SafeAreaView style={styles.container}>
-        <Text style={styles.bigTitle}>Dashboard</Text>
+        <Text style={styles.bigTitle}>What ingredients do you have?</Text>
         <View style={styles.searchContainer}>
           <TextInput
             placeholder="Enter recipe keyword"
@@ -33,8 +33,9 @@ const RecipeSearch = () => {
             onChangeText={(text) => setQuery(text)}
             style={styles.input}
           />
-          <Button title="Search" onPress={searchRecipes} color="#EE9B01"/>
+          <Button title="Search" onPress={searchRecipes} color="#68904D"/>
         </View>
+        <Button title="Search By Fridge" onPress={searchRecipes} color="#68904D"/>
         <FlatList
           data={recipes}
           keyExtractor={(item) => item.recipe.uri}
@@ -63,9 +64,10 @@ const styles = StyleSheet.create({
     marginTop:40,
   },
   bigTitle: {
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: '#68904D'
   },
   searchContainer: {
     flexDirection: 'row',
