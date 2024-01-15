@@ -16,7 +16,7 @@ const Header = ({showBackButton = true }) => {
   };
 
   return (
-    <View style={{ backgroundColor:'#14471E', flexDirection: 'row', justifyContent: 'space-between', padding: 20, paddingTop:30, alignItems: 'start' }}>
+    <View style={{ backgroundColor:'#68904D', flexDirection: 'row', justifyContent: 'space-between', padding: 20, paddingTop:30, alignItems: 'start' }}>
     
       <TouchableOpacity onPress={() => handleNavigate('RecipeSearch')}>
         <Text style={{fontSize: 25, fontWeight: 'bold', color:'white'}}>EatSmart</Text>
@@ -56,6 +56,10 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     color:'white'
   },
+  navbarItem: {
+    fontSize: 15, fontWeight: 'bold', color:'white'
+
+  }
 });
 
 

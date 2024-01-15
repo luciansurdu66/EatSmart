@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import styles from '../styles/homeScreen.style';
 import LoginScreen from './loginScreen';
 import { LinearGradient } from 'expo-linear-gradient'; 
+import SignUpScreen from './signupScreen';
 
 const HomeScreen = ({ navigation }) => {
   const handleSignIn = () => {
@@ -21,7 +22,7 @@ const HomeScreen = ({ navigation }) => {
     <View style={styles.overlay}>
       <TouchableOpacity
         style={styles.container1}
-        onPress={() => navigation.navigate(LoginScreen)}>
+        onPress={() => navigation.navigate(SignUpScreen)}>
         <Text style={styles.container1.startBut}>Start with email</Text>
       </TouchableOpacity>
     </View>

@@ -25,7 +25,6 @@ export default function App() {
         <Stack.Screen name="AddIngredient" component={AddIngredient} options={({ route }) => ({ header: () => <Header title={route.name} /> })} />
         <Stack.Screen name="MyFridge" component={MyFridge} options={({ route }) => ({ header: () => <Header title={route.name} /> })} />
         <Stack.Screen name="RecipePage" component={RecipePage} options={({ route }) => ({ header: () => <Header title={route.name} /> })}/>
-
       </Stack.Navigator> 
     </NavigationContainer>
   );
