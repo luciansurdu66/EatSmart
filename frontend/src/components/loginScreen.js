@@ -1,22 +1,35 @@
 import React, { useState } from "react";
-import { View, TextInput, Text, Touchable, TouchableOpacity } from "react-native";
+import { View, TextInput, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import AddIngredient from "./addIngredient";
 import styles from "../styles/loginAndSignIn.style";
-import SignUpScreen from "./signupScreen";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import MyFridge from "./myFridge";
+import RecipeSearch from "./recipeSearch";
+import axios from "axios";
+import baseURL from "../../assets/constants";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+
   const navigation = useNavigation();
 
   const handleLogin = () => {
-    console.log("Autentificare: ", email, password);
-    navigation.navigate("MyFridge");
+    const user = {
+      email: email,
+      password: password,
+    };
+    console.log(user);
+    axios
+      .post(baseURL+"/auth/login", user)
+      .then((res) => {
+        console.log("Login successful")
+        navigation.navigate("RecipeSearch");
+      });
   };
+  const handleResetPassword = () => {
+    navigation.navigate("ResetPasswordScreen");
+  }
 
   const handleSignUp = () => {
     navigation.navigate("SignUpScreen");
@@ -27,7 +40,6 @@ const LoginScreen = () => {
   }
 
   return (
-
       <View>
         <Text style={styles.loginText}>Login</Text>
         <Text style={styles.text}>E-mail</Text>
@@ -38,17 +50,13 @@ const LoginScreen = () => {
           style={styles.textInput}
         />
         <Text style={styles.text}>Password</Text>
-        {/* <TextInput
-          placeholder="Your Password"
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-          style={styles.textInput}
-        /> */}
         <View>
           <TextInput
             placeholder="Your Password"
             secureTextEntry={isPasswordVisible}
             style={styles.textInput}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
           />
           <TouchableOpacity
             style={{ position: 'absolute', right: 30, top: 20 }}
@@ -58,7 +66,7 @@ const LoginScreen = () => {
           </TouchableOpacity>
         </View>
 
-       <TouchableOpacity onPress={handleLogin}>
+       <TouchableOpacity onPress={handleResetPassword}>
           <Text style={styles.button} >Forgot Password </Text> 
        </TouchableOpacity>
         
@@ -67,16 +75,20 @@ const LoginScreen = () => {
           </TouchableOpacity>
 
         <View style={styles.container}>
+        <Text style={{fontSize: 20, fontFamily: 'serif'}}>Don't have an account?</Text>
         <Text style={styles.button} onPress={handleSignUp}>Sign up</Text>
-            <Text style={{fontSize: 20, fontFamily: 'serif'}}>Don't have an account?</Text>
+            
             <TouchableOpacity onPress={handleSignUp}>
             </TouchableOpacity>
         </View>
+        <View style={styles.CircleShape3}
+          />
+          <View style={styles.CircleShape1}
+          />
+          <View style={styles.CircleShape2}
+          />
       </View>
-      
-  )
-
-};
+  )};
 
 export default LoginScreen;
 

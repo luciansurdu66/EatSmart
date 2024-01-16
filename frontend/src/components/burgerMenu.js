@@ -4,11 +4,9 @@ import styles from '../styles/burgerMenu.style';
 import { Modal } from 'bootstrap';
 
 const BurgerMenu = ({isVisible, toggleMenu}) => {
-
     const menuAnimation = useRef(new Animated.Value(0)).current;
     const screenWidth = Dimensions.get('window').width;
     
-
     useEffect(() => {
         Animated.timing(menuAnimation, {
             toValue: isVisible ? 1 : 0,

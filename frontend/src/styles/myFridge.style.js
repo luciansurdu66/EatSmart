@@ -1,11 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-    
     container: {
       flex: 1,
       backgroundColor: 'white',
-      padding: 36,
+      padding: 40,
       position: 'relative',
     },
     title: {
@@ -16,10 +15,11 @@ const styles = StyleSheet.create({
     },
     roundButton: {
       position: 'absolute',
-      bottom: 24,
-      right: 32,
+      bottom: 20,
+      right: 14,
       backgroundColor: '#EE9B01',
-      borderRadius: 64, // Set a large enough value to make it fully round
+      borderRadius: 64
+      , // Set a large enough value to make it fully round
       paddingVertical: 20,
       paddingHorizontal: 20,
     },

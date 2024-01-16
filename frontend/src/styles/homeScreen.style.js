@@ -4,38 +4,72 @@ const styles = StyleSheet.create({
     
     container: {
       flex: 1,
-      backgroundColor: '#B784A7',
-    },
-    backgroundImage: {
-      flex: 1,
-      resizeMode: 'cover',
-      justifyContent: 'center',
     },
     overlay: {
       flex: 1,
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
       justifyContent: 'center',
       alignItems: 'center',
     },
-    title: {
-        fontSize: 32,
+    welcomeContainer: {
+      alignItems: 'right',
+    },
+    welcomeLine: {
+      width: 311,
+      top: 130,
+      left: 10,
+      fontWeight: 'bold',
+      color: '#111719',
+      fontSize: 60,
+      letterSpacing: 1,
+    },
+    container1: {
+      backgroundColor: '#FFFFFF36',
+      borderRadius: 30,
+      padding: 10,
+      width: '75%',
+      alignSelf: 'center',
+      alignItems: 'center',  // Centrare orizontală
+      top: 100,
+      startBut: {
+          margin: 5,
+          alignSelf: 'center',
+          textAlign: 'center',
+          color: 'white',
+          fontSize: 17,
+          fontFamily: 'serif'
+      }
+    },
+      textContainer: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          bottom: 120,
+      },
+      button: {
+        alignItems: 'center',
+        padding: 10,
+        margin: 10,
+        borderRadius: 10,
+        alignSelf: 'center',    
         color: 'white',
-        fontWeight: 'bold',
-        marginBottom: 20,
-        fontFamily: 'BungeeInlineRegular'
+        fontSize: 15,
+        textShadowColor: 'transparent',
+        fontFamily: 'serif',
+        textDecorationLine: 'underline'
+
 
     },
-    button: {
-      backgroundColor: '#e74c3c',
-      paddingVertical: 15,
-      paddingHorizontal: 30,
-      borderRadius: 10,
-    },
-    buttonText: {
-      color: 'white',
-      fontSize: 18,
-      fontWeight: 'bold',
-    },
+      backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover', 
+        justifyContent: 'center',
+      },
+      contentContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+    
   });
 
 export default styles;

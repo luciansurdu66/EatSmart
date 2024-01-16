@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, FlatList } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 import styles from '../styles/myFridge.style';
 import RecipeSearchScreen from '/Users/macbook/EatSmart/EatSmart/frontend/src/components/searchScreen.js';
 import IngredientInputScreen from '/Users/macbook/EatSmart/EatSmart/frontend/src/components/IngredientInput.js';
 import GridComponent from './gridComponent'; 
 import Svg, { Path } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
+import Header from './Header/Header';
 
 const MyFridge = () => {
   const navigation = useNavigation();

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { View, TextInput, Button, Text } from "react-native";
+import { View, TextInput, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import LoginScreen from "./loginScreen";
-import styles from "../styles/login.style";
-
+import styles from "../styles/loginAndSignIn.style";
+import axios from "axios";
+import baseURL from "../../assets/constants";
 
 const SignUpScreen = () =>{
     const [fullName, setFullName] = useState("");
@@ -12,16 +12,25 @@ const SignUpScreen = () =>{
 
     const navigation = useNavigation();
 
+
     const handleSignUp = () => {
-        // Implementează logica de autentificare aici
-        console.SignUp("Inregistrare: ",fullName, email, password);
-        //Navigheza catre pagina de Autentificare
-        navigation.navigate("LoginScreen");
+        const user = {
+          fullName: fullName,
+          email: email,
+          password: password,
+        };
+        console.log(user);
+        axios
+          .post(baseURL+"/auth/register", user)
+          .then((res) => {
+            console.log("Sign up successful")
+            navigation.navigate("LoginScreen");
+          });
     };
     return (
 
         <View style={styles.view}>
-          <Text style={styles.loginText}>SignUp</Text>
+          <Text style={styles.loginText}>Sign Up</Text>
           <Text style={styles.text}>Full Name</Text>
           <TextInput
             placeholder="Full name"
@@ -44,12 +53,19 @@ const SignUpScreen = () =>{
             secureTextEntry
             style={styles.textInput}
           />
-          <View style={styles.CircleShape1} 
+          <TouchableOpacity style={styles.container1} onPress={handleSignUp}>        
+            <Text style={styles.container1.loginBut}>Sign Up</Text>
+          </TouchableOpacity>
+          <View style={styles.CircleShape3}
           />
-          <Text title="Sign Up" onPress={handleSignUp}> Sign Up </Text>
+          <View style={styles.CircleShape1}
+          />
+          <View style={styles.CircleShape2}
+          />
         </View>
         
     )
 }
 
 export default SignUpScreen
+
