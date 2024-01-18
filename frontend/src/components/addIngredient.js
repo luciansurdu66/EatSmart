@@ -64,7 +64,10 @@ const AddIngredient = () => {
                     setSelected={(val) => setIngredientUnit(val)}
                     data={data}
                     save="value"
-                    boxStyles={{width: 353, marginBottom: 15, borderColor: '#68904D',}}
+                    boxStyles={{width: 353, marginBottom: 15, borderColor: '#68904D', backgroundColor: "#FFFFFF" }}
+                    searchPlaceholder= "search"
+                    placeholder="Choose the unit"
+                    dropdownStyles={{backgroundColor: "#FFFFFF", marginBottom: 15}}
                     >
                 </ SelectList>
                 <TextInput
@@ -110,9 +113,11 @@ const styles = StyleSheet.create({
         padding: 15,
         marginBottom: 15,
         width: '100%',
+        backgroundColor: "#FFFFFF"
     },
     multilineInput: {
         height: 100,
+        backgroundColor: "#FFFFFF"
     },
     button: {
         backgroundColor: '#68904D',
@@ -132,7 +137,8 @@ const styles = StyleSheet.create({
     },
     selectList: {
         width: '100%', // sau orice altă valoare dorită
-        marginTop: 10,  // sau orice alt spațiere dorită
+        marginTop: 10,
+        backgroundColor: "#FF4FFF"  // sau orice alt spațiere dorită
     },
 });
 
