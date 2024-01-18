@@ -11,6 +11,8 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+  const [error, setError] = useState("");
+
 
   const navigation = useNavigation();
 
@@ -19,13 +21,26 @@ const LoginScreen = () => {
       email: email,
       password: password,
     };
+  
     console.log(user);
-    axios
-      .post(baseURL+"/auth/login", user)
+  
+    axios.post(baseURL + "/auth/login", user)
       .then((res) => {
-        console.log("Login successful")
+        console.log("Login successful");
         navigation.navigate("RecipeSearch");
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 400) {
+
+          setError("Incorrect email or password. Please try again.");
+          setPassword("");
+        } else {
+          setError("Login failed. Please try again later.");
+        }
       });
+  };
+  const handleInputChange = () => {
+    setError("");
   };
   const handleResetPassword = () => {
     navigation.navigate("ResetPasswordScreen");
@@ -46,7 +61,10 @@ const LoginScreen = () => {
         <TextInput
           placeholder="Your email"
           value={email}
-          onChangeText={(text) => setEmail(text)}
+          onChangeText={(text) => {
+            setEmail(text);
+            handleInputChange(); // Reset error message on input change
+          }}
           style={styles.textInput}
         />
         <Text style={styles.text}>Password</Text>
@@ -56,7 +74,9 @@ const LoginScreen = () => {
             secureTextEntry={isPasswordVisible}
             style={styles.textInput}
             value={password}
-            onChangeText={(text) => setPassword(text)}
+            onChangeText={(text) => {
+              setPassword(text);
+              handleInputChange();}}
           />
           <TouchableOpacity
             style={{ position: 'absolute', right: 30, top: 20 }}
@@ -65,6 +85,8 @@ const LoginScreen = () => {
             <Icon name={isPasswordVisible ? 'eye-slash' : 'eye'} size={22} color="gray" />
           </TouchableOpacity>
         </View>
+        {error ? <Text style={styles.errorMessage}>{error}</Text> : null}
+
 
        <TouchableOpacity onPress={handleResetPassword}>
           <Text style={styles.button} >Forgot Password </Text> 
