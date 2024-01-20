@@ -8,4 +8,6 @@ router.delete('/delete/:id', recipeController.deleteRecipe);
 
 router.get('/', recipeController.getRecipes);
 
+router.get('/searchByIngredients', recipeController.searchRecipesByIngredients);
+
 module.exports = router;
