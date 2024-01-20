@@ -43,6 +43,52 @@ const AddIngredient = () => {
 
     return (
         <ImageBackground source={require('../../images/addingr.jpg')} style={styles.wrapper}>
+<<<<<<< Updated upstream
+=======
+    }
+
+    onChangeIngredientName(e) {
+        this.setState({ ingredient_name: e.target.value });
+    }
+
+    onChangeIngredientQuantity(e) {
+        this.setState({ ingredient_quantity: e.target.value });
+    }
+
+    onChangeIngredientUnit(e) {
+        this.setState({ ingredient_unit: e.target.value });
+    }
+
+    onChangeIngredientDescription(e) {
+        this.setState({ ingredient_description: e.target.value });
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+
+        const newIngredient = {
+            ingredient_name: this.state.ingredient_name,
+            ingredient_quantity: this.state.ingredient_quantity,
+            ingredient_unit: this.state.ingredient_unit,
+            ingredient_description: this.state.ingredient_description,
+        };
+
+        // Add ingredient to the context
+        const { addIngredient } = this.context;
+        addIngredient(newIngredient);
+
+        // Reset state
+        this.setState({
+            ingredient_name: "",
+            ingredient_quantity: "",
+            ingredient_unit: "",
+            ingredient_description: "",
+        });
+    }
+    render() {
+        return (
+            <View style={styles.container}>
+>>>>>>> Stashed changes
                 <Text style={styles.header}>Add New Ingredient</Text>
                 <TextInput
                     style={styles.textInput}
