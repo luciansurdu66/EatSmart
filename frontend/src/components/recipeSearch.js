@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 
 const RecipeSearch = ({ navigation }) => {
   const [query, setQuery] = useState('');
-  const [ingredients, setIngredients] = useState(''); // New functionality for ingredients
+  const [fridgeIngredients, setFridgeIngredients] = useState('');
   const [recipes, setRecipes] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
 
@@ -38,49 +38,64 @@ const RecipeSearch = ({ navigation }) => {
     }
   };
 
-  const searchRecipesByIngredients = async () => {
-    try {
-      const response = await axios.get(`http://localhost:3001/recipes/searchByIngredients?ingredients=${encodeURIComponent(ingredients)}`);
-      setRecipes(response.data);
-      setSearchPerformed(true);
-    } catch (error) {
-      console.error('Error fetching recipes:', error);
-    }
-  };
+// New functionality: Search recipes by ingredients directly using Spoonacular API
+const searchRecipesByFridge = async () => {
+  try {
+    const response = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(fridgeIngredients)}&apiKey=51f681b54480438e82819cd110f546a8&number=15`);
+    setRecipes(response.data);
+    setSearchPerformed(true);
+  } catch (error) {
+    console.error('Error fetching recipes:', error);
+  }
+};
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.bigTitle}>What ingredients do you have?</Text>
-      <View style={styles.searchContainer}>
-        <TextInput
-          placeholder="Enter recipe keyword"
-          value={query}
-          onChangeText={(text) => setQuery(text)}
-          style={styles.input}
-        />
-        <Button title="Search" onPress={searchRecipes} color="#68904D"/>
-      </View>
-      <Button title="Search By Fridge" onPress={searchRecipes} color="#68904D"/>
-      <FlatList
-        data={recipes}
-        keyExtractor={(item) => item.id.toString()} // Adjust according to your data
-        renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate('RecipePage', { recipeId: item.id })}>
-            <View style={styles.recipeContainer}>
-              <Image source={{ uri: item.image }} style={styles.recipeImage} />
-              <View style={styles.recipeDetails}>
-                <Text style={styles.recipeLabel}>{item.title}</Text>
-                {/* Other recipe details */}
-              </View>
-            </View>
-          </TouchableOpacity>
-        )}
-        ListEmptyComponent={() => 
-          searchPerformed ? <Text>No recipes found.</Text> : <Text>Loading...</Text>
-        }
+return (
+  <SafeAreaView style={styles.container}>
+    {/* Search by recipe keyword */}
+    <Text style={styles.bigTitle}>Search Recipes By Keyword</Text>
+    <View style={styles.searchContainer}>
+      <TextInput
+        placeholder="Enter recipe keyword"
+        value={query}
+        onChangeText={(text) => setQuery(text)}
+        style={styles.input}
       />
-    </SafeAreaView>
-  );
+      <Button title="Search" onPress={searchRecipes} color="#68904D"/>
+    </View>
+
+    {/* Search by fridge ingredients */}
+    <Text style={styles.bigTitle}>Search Recipes By Fridge Ingredients</Text>
+    <View style={styles.searchContainer}>
+      <TextInput
+        placeholder="Enter ingredients from fridge"
+        value={fridgeIngredients}
+        onChangeText={(text) => setFridgeIngredients(text)}
+        style={styles.input}
+      />
+      <Button title="Search By Fridge" onPress={searchRecipesByFridge} color="#68904D"/>
+    </View>
+
+    {/* Recipes list */}
+    <FlatList
+      data={recipes}
+      keyExtractor={(item) => item.id.toString()}
+      renderItem={({ item }) => (
+        <TouchableOpacity onPress={() => navigation.navigate('RecipePage', { recipeId: item.id })}>
+          <View style={styles.recipeContainer}>
+            <Image source={{ uri: item.image }} style={styles.recipeImage} />
+            <View style={styles.recipeDetails}>
+              <Text style={styles.recipeLabel}>{item.title}</Text>
+              {/* Other recipe details */}
+            </View>
+          </View>
+        </TouchableOpacity>
+      )}
+      ListEmptyComponent={() => 
+        searchPerformed ? <Text>No recipes found.</Text> : <Text>Loading...</Text>
+      }
+    />
+  </SafeAreaView>
+);
 };
 
 const styles = StyleSheet.create({
