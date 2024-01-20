@@ -14,9 +14,10 @@ const RecipeSearch = () => {
   const searchRecipes = async () => {
     try {
       const response = await axios.get(
-        `https://api.edamam.com/search?q=${query}&app_id=ecdd798b&app_key=3f4a18a8a8382ef9239d0b428698ce25&from=0&to=10`
+        `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=51f681b54480438e82819cd110f546a8&number=10`
       );
-      setRecipes(response.data.hits);
+      // Assuming each recipe in the response is within the 'results' array
+      setRecipes(response.data.results);
     } catch (error) {
       console.error('Error fetching recipes:', error);
     }
@@ -38,14 +39,14 @@ const RecipeSearch = () => {
         <Button title="Search By Fridge" onPress={searchRecipes} color="#68904D"/>
         <FlatList
           data={recipes}
-          keyExtractor={(item) => item.recipe.uri}
+          keyExtractor={(item) => item.id.toString()} // Assuming each recipe has an 'id'
           renderItem={({ item }) => (
-            <TouchableOpacity /*onPress={() => Linking.openURL(item.recipe.url)}*/>
+            <TouchableOpacity onPress={() => navigation.navigate('RecipeDetails', { recipe: item })}>
               <View style={styles.recipeContainer}>
-                <Image source={{ uri: item.recipe.image }} style={styles.recipeImage} />
+                <Image source={{ uri: item.image }} style={styles.recipeImage} />
                 <View style={styles.recipeDetails}>
-                  <Text style={styles.recipeLabel}>{item.recipe.label}</Text>
-                  <Text style={styles.recipeSource}>{item.recipe.source}</Text>
+                  <Text style={styles.recipeLabel}>{item.title}</Text>
+                  {/* Other recipe details */}
                 </View>
               </View>
             </TouchableOpacity>
