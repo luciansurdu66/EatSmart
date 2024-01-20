@@ -10,11 +10,8 @@ const Stack = createStackNavigator();
 
 const RecipeSearch = ({ navigation }) => {
   const [query, setQuery] = useState('');
-<<<<<<< Updated upstream
   const [fridgeIngredients, setFridgeIngredients] = useState('');
 
-=======
->>>>>>> Stashed changes
   const [recipes, setRecipes] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
   const { ingredients } = useContext(IngredientsContext); 
