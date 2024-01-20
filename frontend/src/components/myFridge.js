@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
 import styles from '../styles/myFridge.style';
 import GridComponent from './gridComponent'; 
 import Svg, { Path } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
+import Header from './Header/Header';
 
 const MyFridge = () => {
   const navigation = useNavigation();
@@ -32,7 +32,5 @@ const MyFridge = () => {
     </View>
   );
 };
-
-
 
 export default MyFridge;

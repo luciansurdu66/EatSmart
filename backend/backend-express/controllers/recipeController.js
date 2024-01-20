@@ -37,7 +37,9 @@ exports.getRecipes = async (req, res) => {
         console.log(err);
         res.status(400).json(err);
     }
+
 }
+
 exports.searchRecipesByIngredients = async (req, res) => {
     const ingredients = req.query.ingredients; 
     const spoonacularEndpoint = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(ingredients)}&apiKey='547fbf1b9fa94aba8ee5aa221c02d35a'`;
@@ -49,4 +51,6 @@ exports.searchRecipesByIngredients = async (req, res) => {
         console.error(error);
         res.status(500).send('Error fetching recipes from Spoonacular');
     }
-};
+}
+
+

@@ -10,6 +10,7 @@ const Stack = createStackNavigator();
 const RecipeSearch = ({ navigation }) => {
   const [query, setQuery] = useState('');
   const [fridgeIngredients, setFridgeIngredients] = useState('');
+
   const [recipes, setRecipes] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
 

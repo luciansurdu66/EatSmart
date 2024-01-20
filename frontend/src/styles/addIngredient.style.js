@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20
     },
     titleText: {
-        fontSize: 20,
+        fontSize: 30,
         fontWeight: 'bold',
         color: 'black',
         textAlign: 'center',
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     },
     input: {
         borderWidth: 1,
-        borderColor: '#777',
+        borderColor: 'black',
         padding: 8,
         margin: 10,
         width: 200

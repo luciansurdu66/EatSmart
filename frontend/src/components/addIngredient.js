@@ -1,151 +1,144 @@
-import React, { Component } from "react";
 import axios from "axios";
-import { View, Text, Button, TextInput, StyleSheet } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, TextInput, ImageBackground } from "react-native";
+import baseURL from "../../assets/constants";
+import { SelectList } from "react-native-dropdown-select-list";
+import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
-export default class AddIngredient extends Component {
-    constructor(props) {
-        super(props);
+const AddIngredient = () => {
+    const [ingredientName, setIngredientName] = useState("");
+    const [ingredientQuantity, setIngredientQuantity] = useState("");
+    const [ingredientUnit, setIngredientUnit] = useState("");
+    const [ingredientDescription, setIngredientDescription] = useState("");
 
-        this.onChangeIngredientName = this.onChangeIngredientName.bind(this);
-        this.onChangeIngredientQuantity = this.onChangeIngredientQuantity.bind(this);
-        this.onChangeIngredientUnit = this.onChangeIngredientUnit.bind(this);
-        this.onChangeIngredientDescription = this.onChangeIngredientDescription.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+    const navigation = useNavigation();
 
-        this.state = {
-            ingredient_name: "",
-            ingredient_quantity: "",
-            ingredient_unit: "",
-            ingredient_description: "",
+    data = 
+    [
+        {key:'1', value:'kg'},
+        {key:'2', value:'g'},
+        {key:'3', value:'mg'},
+        {key:'4', value:'l'},
+        {key:'5', value:'ml'},
+    ]
+
+    const addIngredient = () => {
+        const ingredient = {
+            name: ingredientName,
+            quantity: ingredientQuantity,
+            unit: ingredientUnit,
+            description: ingredientDescription,
         };
-    }
-
-    onChangeIngredientName(e) {
-        this.setState({
-            ingredient_name: e.target.value,
-        });
-    }
-
-    onChangeIngredientQuantity(e) {
-        this.setState({
-            ingredient_quantity: e.target.value,
-        });
-    }
-
-    onChangeIngredientUnit(e) {
-        this.setState({
-            ingredient_unit: e.target.value,
-        });
-    }
-
-    onChangeIngredientDescription(e) {
-        this.setState({
-            ingredient_description: e.target.value,
-        });
-    }
-
-    onSubmit(e) {
-        e.preventDefault();
-
-        const newIngredient = {
-            ingredient_name: this.state.ingredient_name,
-            ingredient_quantity: this.state.ingredient_quantity,
-            ingredient_unit: this.state.ingredient_unit,
-            ingredient_description: this.state.ingredient_description,
-        };
-
+        console.log(ingredient);
         axios
-            .post("http://localhost:5000/ingredients/add", newIngredient)
-            .then((res) => console.log(res.data));
-
-        this.setState({
-            ingredient_name: "",
-            ingredient_quantity: "",
-            ingredient_unit: "",
-            ingredient_description: "",
+        .post(baseURL+"/ingredient/add", ingredient)
+        .then((res) => {
+            console.log(res.data);
+            navigation.navigate("MyFridge", { refresh: Date.now() });
+        })
+        .catch((error) => {
+            console.error('Failed to add ingredient',error);
         });
-    }
+    };
 
-    render() {
-        return (
-            <View style={styles.container}>
+    return (
+        <ImageBackground source={require('../../images/addingr.jpg')} style={styles.wrapper}>
                 <Text style={styles.header}>Add New Ingredient</Text>
                 <TextInput
                     style={styles.textInput}
                     placeholder="Ingredient Name"
-                    value={this.state.ingredient_name}
-                    onChange={this.onChangeIngredientName}
+                    placeholderTextColor= 'gray'
+                    value={ingredientName}
+                    onChangeText={(text) => setIngredientName(text)}
+
                 />
                 <TextInput
                     style={styles.textInput}
                     placeholder="Ingredient Quantity"
-                    value={this.state.ingredient_quantity}
-                    onChange={this.onChangeIngredientQuantity}
+                    placeholderTextColor= 'gray'
+                    value={ingredientQuantity}
+                    onChangeText={(text) => setIngredientQuantity(text)}
+                    keyboardType="numeric"
                 />
+                <SelectList 
+                    setSelected={(val) => setIngredientUnit(val)}
+                    data={data}
+                    save="value"
+                    boxStyles={{width: 353, marginBottom: 15, borderColor: '#68904D', backgroundColor: "#FFFFFF" }}
+                    searchPlaceholder= "search"
+                    placeholder="Choose the unit"
+                    dropdownStyles={{backgroundColor: "#FFFFFF", marginBottom: 15}}
+                    >
+                </ SelectList>
                 <TextInput
-                    style={styles.textInput}
-                    placeholder="Ingredient Unit"
-                    value={this.state.ingredient_unit}
-                    onChange={this.onChangeIngredientUnit}
-                />
-                <TextInput
-                    style={styles.textInput}
+                    style={[styles.textInput, styles.multilineInput]}
                     placeholder="Ingredient Description"
-                    value={this.state.ingredient_description}
-                    onChange={this.onChangeIngredientDescription}
+                    placeholderTextColor= 'gray'
+                    value={ingredientDescription}
+                    onChangeText={(text) => setIngredientDescription(text)}
+                    multiline
                 />
-                <Button
-                    title="Add Ingredient"
-                    onPress={this.onSubmit}
+                <TouchableOpacity
                     style={styles.button}
-                />
-            </View>
+                    onPress={addIngredient}
+                >
+                    <Text style={styles.buttonText}>Add Ingredient</Text>
+                </TouchableOpacity>
+        </ImageBackground>
         );
     }
-}
+
+export default AddIngredient;
 
 const styles = StyleSheet.create({
-    container: {
+    wrapper: {
         flex: 1,
-        backgroundColor: '#fff',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: 40,
-        paddingHorizontal: 20
+        backgroundColor: '#fff',
+        paddingHorizontal: 20,
+        paddingTop: "10%",
+        paddingHorizontal: 20,
     },
-    titleText: {
-        fontSize: 10,
+    header: {
+        fontSize: 24,
         fontWeight: 'bold',
-        color: 'black',
-        textAlign: 'center',
-        marginBottom: 20
+        marginBottom: 20,
+        color: '#68904D'
     },
-    input: {
+    textInput: {
         borderWidth: 1,
-        borderColor: '#777',
-        padding: 8,
-        margin: 10,
-        width: 200
+        borderColor: '#68904D',
+        borderRadius: 8,
+        padding: 15,
+        marginBottom: 15,
+        width: '100%',
+        backgroundColor: "#FFFFFF"
+    },
+    multilineInput: {
+        height: 100,
+        backgroundColor: "#FFFFFF"
     },
     button: {
-        alignItems: 'center',
-        backgroundColor: 'black',
-        padding: 10,
+        backgroundColor: '#68904D',
+        borderRadius: 50,
         margin: 10,
-        width: 300
+        paddingVertical: 15,
+        paddingHorizontal: 30,
+        alignItems: 'center',
+        fontSize: 20,
+        textShadowColor: 'transparent',
+        fontFamily: 'serif'
     },
     buttonText: {
-        fontSize: 50,
+        color: 'white',
+        fontSize: 16,
         fontWeight: 'bold',
-        color: 'black',
-        textAlign: 'center',
-        marginBottom: 20
     },
-    text: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: 'black',
-        textAlign: 'center',
-        marginBottom: 20
-    }
-    });
+    selectList: {
+        width: '100%', // sau orice altă valoare dorită
+        marginTop: 10,
+        backgroundColor: "#FF4FFF"  // sau orice alt spațiere dorită
+    },
+});
+
