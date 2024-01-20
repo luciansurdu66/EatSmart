@@ -13,6 +13,7 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
@@ -26,6 +27,8 @@ export default function App() {
       </Stack.Navigator> 
     </NavigationContainer>
 =======
+=======
+>>>>>>> Stashed changes
     <IngredientsProvider>
       <NavigationContainer>
         <Stack.Navigator>
@@ -38,6 +41,5 @@ export default function App() {
         </Stack.Navigator> 
       </NavigationContainer>
     </IngredientsProvider>
->>>>>>> Stashed changes
   );
 }

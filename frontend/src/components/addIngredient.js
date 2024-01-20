@@ -1,4 +1,6 @@
+import React, { Component } from "react";
 import axios from "axios";
+<<<<<<< Updated upstream
 import { Text, StyleSheet, TouchableOpacity, TextInput, ImageBackground } from "react-native";
 import baseURL from "../../assets/constants";
 import { SelectList } from "react-native-dropdown-select-list";
@@ -10,25 +12,30 @@ const AddIngredient = () => {
     const [ingredientQuantity, setIngredientQuantity] = useState("");
     const [ingredientUnit, setIngredientUnit] = useState("");
     const [ingredientDescription, setIngredientDescription] = useState("");
+=======
+import { View, Text, Button, TextInput, StyleSheet } from "react-native";
+import { IngredientsContext } from './IngredientsContext'; 
 
-    const navigation = useNavigation();
+export default class AddIngredient extends Component {
+    static contextType = IngredientsContext; 
 
-    data = 
-    [
-        {key:'1', value:'kg'},
-        {key:'2', value:'g'},
-        {key:'3', value:'mg'},
-        {key:'4', value:'l'},
-        {key:'5', value:'ml'},
-    ]
+    constructor(props) {
+        super(props);
+>>>>>>> Stashed changes
 
-    const addIngredient = () => {
-        const ingredient = {
-            name: ingredientName,
-            quantity: ingredientQuantity,
-            unit: ingredientUnit,
-            description: ingredientDescription,
+        this.onChangeIngredientName = this.onChangeIngredientName.bind(this);
+        this.onChangeIngredientQuantity = this.onChangeIngredientQuantity.bind(this);
+        this.onChangeIngredientUnit = this.onChangeIngredientUnit.bind(this);
+        this.onChangeIngredientDescription = this.onChangeIngredientDescription.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+
+        this.state = {
+            ingredient_name: "",
+            ingredient_quantity: "",
+            ingredient_unit: "",
+            ingredient_description: "",
         };
+<<<<<<< Updated upstream
         console.log(ingredient);
         axios
         .post(baseURL+"/ingredient/add", ingredient)
@@ -45,6 +52,8 @@ const AddIngredient = () => {
         <ImageBackground source={require('../../images/addingr.jpg')} style={styles.wrapper}>
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     }
 
     onChangeIngredientName(e) {
@@ -85,106 +94,66 @@ const AddIngredient = () => {
             ingredient_description: "",
         });
     }
+
     render() {
         return (
             <View style={styles.container}>
->>>>>>> Stashed changes
                 <Text style={styles.header}>Add New Ingredient</Text>
                 <TextInput
                     style={styles.textInput}
                     placeholder="Ingredient Name"
-                    placeholderTextColor= 'gray'
-                    value={ingredientName}
-                    onChangeText={(text) => setIngredientName(text)}
-
+                    value={this.state.ingredient_name}
+                    onChangeText={(text) => this.setState({ ingredient_name: text })}
                 />
                 <TextInput
                     style={styles.textInput}
                     placeholder="Ingredient Quantity"
-                    placeholderTextColor= 'gray'
-                    value={ingredientQuantity}
-                    onChangeText={(text) => setIngredientQuantity(text)}
-                    keyboardType="numeric"
+                    value={this.state.ingredient_quantity}
+                    onChangeText={(text) => this.setState({ ingredient_quantity: text })}
                 />
-                <SelectList 
-                    setSelected={(val) => setIngredientUnit(val)}
-                    data={data}
-                    save="value"
-                    boxStyles={{width: 353, marginBottom: 15, borderColor: '#68904D', backgroundColor: "#FFFFFF" }}
-                    searchPlaceholder= "search"
-                    placeholder="Choose the unit"
-                    dropdownStyles={{backgroundColor: "#FFFFFF", marginBottom: 15}}
-                    >
-                </ SelectList>
                 <TextInput
-                    style={[styles.textInput, styles.multilineInput]}
-                    placeholder="Ingredient Description"
-                    placeholderTextColor= 'gray'
-                    value={ingredientDescription}
-                    onChangeText={(text) => setIngredientDescription(text)}
-                    multiline
+                    style={styles.textInput}
+                    placeholder="Ingredient Unit"
+                    value={this.state.ingredient_unit}
+                    onChangeText={(text) => this.setState({ ingredient_unit: text })}
                 />
-                <TouchableOpacity
+                <TextInput
+                    style={styles.textInput}
+                    placeholder="Ingredient Description"
+                    value={this.state.ingredient_description}
+                    onChangeText={(text) => this.setState({ ingredient_description: text })}
+                />
+                <Button
+                    title="Add Ingredient"
+                    onPress={this.onSubmit}
                     style={styles.button}
-                    onPress={addIngredient}
-                >
-                    <Text style={styles.buttonText}>Add Ingredient</Text>
-                </TouchableOpacity>
-        </ImageBackground>
+                />
+            </View>
         );
     }
-
-export default AddIngredient;
+}
 
 const styles = StyleSheet.create({
-    wrapper: {
+    container: {
         flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
         backgroundColor: '#fff',
-        paddingHorizontal: 20,
-        paddingTop: "10%",
-        paddingHorizontal: 20,
-    },
-    header: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
-        color: '#68904D'
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop: 40,
+        paddingHorizontal: 20
     },
     textInput: {
         borderWidth: 1,
-        borderColor: '#68904D',
-        borderRadius: 8,
-        padding: 15,
-        marginBottom: 15,
-        width: '100%',
-        backgroundColor: "#FFFFFF"
-    },
-    multilineInput: {
-        height: 100,
-        backgroundColor: "#FFFFFF"
+        borderColor: '#777',
+        padding: 8,
+        margin: 10,
+        width: 200
     },
     button: {
-        backgroundColor: '#68904D',
-        borderRadius: 50,
-        margin: 10,
-        paddingVertical: 15,
-        paddingHorizontal: 30,
         alignItems: 'center',
-        fontSize: 20,
-        textShadowColor: 'transparent',
-        fontFamily: 'serif'
-    },
-    buttonText: {
-        color: 'white',
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    selectList: {
-        width: '100%', // sau orice altă valoare dorită
-        marginTop: 10,
-        backgroundColor: "#FF4FFF"  // sau orice alt spațiere dorită
-    },
+        backgroundColor: 'black',
+        padding: 10,
+        margin: 10,
+        width: 300
+    }
 });
-
