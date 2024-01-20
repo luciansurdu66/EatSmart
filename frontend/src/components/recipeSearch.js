@@ -4,15 +4,20 @@ import axios from 'axios';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import RecipePage from './recipepage';
+import { IngredientsContext } from './IngredientsContext';
 
 const Stack = createStackNavigator();
 
 const RecipeSearch = ({ navigation }) => {
   const [query, setQuery] = useState('');
+<<<<<<< Updated upstream
   const [fridgeIngredients, setFridgeIngredients] = useState('');
 
+=======
+>>>>>>> Stashed changes
   const [recipes, setRecipes] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
+  const { ingredients } = useContext(IngredientsContext); 
 
   useEffect(() => {
     fetchRandomRecipes();
@@ -39,16 +44,17 @@ const RecipeSearch = ({ navigation }) => {
     }
   };
 
-// New functionality: Search recipes by ingredients directly using Spoonacular API
-const searchRecipesByFridge = async () => {
-  try {
-    const response = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(fridgeIngredients)}&apiKey=51f681b54480438e82819cd110f546a8&number=15`);
-    setRecipes(response.data);
-    setSearchPerformed(true);
-  } catch (error) {
-    console.error('Error fetching recipes:', error);
-  }
-};
+
+  const searchRecipesByFridge = async () => {
+    try {
+      const fridgeIngredients = ingredients.map(ing => ing.ingredient_name).join(',');
+      const recipesResponse = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(fridgeIngredients)}&apiKey=51f681b54480438e82819cd110f546a&&number=15`);
+      setRecipes(recipesResponse.data);
+      setSearchPerformed(true);
+    } catch (error) {
+      console.error('Error fetching recipes:', error);
+    }
+  };
 
 return (
   <SafeAreaView style={styles.container}>
@@ -67,12 +73,6 @@ return (
     {/* Search by fridge ingredients */}
     <Text style={styles.bigTitle}>Search Recipes By Fridge Ingredients</Text>
     <View style={styles.searchContainer}>
-      <TextInput
-        placeholder="Enter ingredients from fridge"
-        value={fridgeIngredients}
-        onChangeText={(text) => setFridgeIngredients(text)}
-        style={styles.input}
-      />
       <Button title="Search By Fridge" onPress={searchRecipesByFridge} color="#68904D"/>
     </View>
 
