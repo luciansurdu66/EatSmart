@@ -10,8 +10,6 @@ const Stack = createStackNavigator();
 
 const RecipeSearch = ({ navigation }) => {
   const [query, setQuery] = useState('');
-  const [fridgeIngredients, setFridgeIngredients] = useState('');
-
   const [recipes, setRecipes] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
   const { ingredients } = useContext(IngredientsContext); 
@@ -150,3 +148,4 @@ const styles = StyleSheet.create({
 });
 
 export default RecipeSearch;
+

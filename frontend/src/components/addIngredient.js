@@ -1,10 +1,11 @@
+
 import React, { Component } from "react";
 import axios from "axios";
 import { View, Text, Button, TextInput, StyleSheet } from "react-native";
 import { IngredientsContext } from './IngredientsContext';
 
 export default class AddIngredient extends Component {
-    static contextType = IngredientsContext; // Assigning context to the class
+    static contextType = IngredientsContext; 
 
     constructor(props) {
         super(props);
@@ -61,7 +62,6 @@ export default class AddIngredient extends Component {
             ingredient_description: "",
         });
     }
-
     render() {
         return (
             <View style={styles.container}>
@@ -70,25 +70,25 @@ export default class AddIngredient extends Component {
                     style={styles.textInput}
                     placeholder="Ingredient Name"
                     value={this.state.ingredient_name}
-                    onChangeText={(text) => this.setState({ ingredient_name: text })}
+                    onChange={this.onChangeIngredientName}
                 />
                 <TextInput
                     style={styles.textInput}
                     placeholder="Ingredient Quantity"
                     value={this.state.ingredient_quantity}
-                    onChangeText={(text) => this.setState({ ingredient_quantity: text })}
+                    onChange={this.onChangeIngredientQuantity}
                 />
                 <TextInput
                     style={styles.textInput}
                     placeholder="Ingredient Unit"
                     value={this.state.ingredient_unit}
-                    onChangeText={(text) => this.setState({ ingredient_unit: text })}
+                    onChange={this.onChangeIngredientUnit}
                 />
                 <TextInput
                     style={styles.textInput}
                     placeholder="Ingredient Description"
                     value={this.state.ingredient_description}
-                    onChangeText={(text) => this.setState({ ingredient_description: text })}
+                    onChange={this.onChangeIngredientDescription}
                 />
                 <Button
                     title="Add Ingredient"
@@ -109,7 +109,14 @@ const styles = StyleSheet.create({
         paddingTop: 40,
         paddingHorizontal: 20
     },
-    textInput: {
+    titleText: {
+        fontSize: 10,
+        fontWeight: 'bold',
+        color: 'black',
+        textAlign: 'center',
+        marginBottom: 20
+    },
+    input: {
         borderWidth: 1,
         borderColor: '#777',
         padding: 8,
@@ -122,5 +129,19 @@ const styles = StyleSheet.create({
         padding: 10,
         margin: 10,
         width: 300
+    },
+    buttonText: {
+        fontSize: 50,
+        fontWeight: 'bold',
+        color: 'black',
+        textAlign: 'center',
+        marginBottom: 20
+    },
+    text: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'black',
+        textAlign: 'center',
+        marginBottom: 20
     }
-});
+    });

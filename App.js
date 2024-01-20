@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -8,10 +10,7 @@ import HomeScreen from "./frontend/src/components/homeScreen";
 import MyFridge from "./frontend/src/components/myFridge";
 import LoginScreen from "./frontend/src/components/loginScreen";
 import SignUpScreen from "./frontend/src/components/signupScreen";
-import ResetPasswordScreen from './frontend/src/components/resetPasswordScreen';
-import Header from './frontend/src/components/Header/Header';
-import RecipePage from './frontend/src/components/recipepage';
-import RecipeSearch from './frontend/src/components/recipeSearch';
+import RecipeSearchScreen from './frontend/src/components/searchScreen';
 
 const Stack = createStackNavigator();
 
